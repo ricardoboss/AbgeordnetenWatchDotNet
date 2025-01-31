@@ -3,8 +3,9 @@
 	<PropertyGroup>
 		<MSBuildWarningsAsMessages>CS0618</MSBuildWarningsAsMessages>
 
-		<GeneratedSpecProjectDir>$(MSBuildThisFileDirectory)../AbgeordnetenWatchApi.Spec/</GeneratedSpecProjectDir>
-		<GeneratedSpecProject>$(GeneratedSpecProjectDir)AbgeordnetenWatchApi.Spec.proj</GeneratedSpecProject>
+		<GeneratedSpecProject>AbgeordnetenWatchDotNet.ApiSpec</GeneratedSpecProject>
+		<GeneratedSpecProjectDir>$(MSBuildThisFileDirectory)../$(GeneratedSpecProject)/</GeneratedSpecProjectDir>
+		<GeneratedSpecProjectFile>$(GeneratedSpecProjectDir)$(GeneratedSpecProject).proj</GeneratedSpecProjectFile>
 		<GeneratedClientSpecFile>$(GeneratedSpecProjectDir)_generated/@typespec/openapi3/openapi.yaml</GeneratedClientSpecFile>
 		<GeneratedClientDirectory>$(MSBuildThisFileDirectory)Generated/</GeneratedClientDirectory>
 		<GeneratedClientClassName>AbgeordnetenWatchApiClient</GeneratedClientClassName>
@@ -14,7 +15,7 @@
 
 	<ItemGroup>
 		<!-- To ensure the spec file is up-to-date -->
-		<ProjectReference Include="$(GeneratedSpecProject)">
+		<ProjectReference Include="$(GeneratedSpecProjectFile)">
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 			<SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
 		</ProjectReference>
