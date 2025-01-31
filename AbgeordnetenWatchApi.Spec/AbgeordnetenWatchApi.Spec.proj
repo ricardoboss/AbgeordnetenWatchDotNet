@@ -1,0 +1,31 @@
+﻿<Project DefaultTargets="Build">
+
+	<PropertyGroup>
+		<TargetPath>$(MSBuildProjectDirectory)\_generated\@typespec\openapi3\openapi.yaml</TargetPath>
+	</PropertyGroup>
+
+	<Target Name="Restore">
+		<Exec Command="yarn install"/>
+	</Target>
+
+	<Target Name="Build">
+		<Exec Command="yarn tsp compile $(MSBuildProjectDirectory)\" LogStandardErrorAsError="true"/>
+	</Target>
+
+	<Target Name="Clean">
+		<RemoveDir Directories="$(MSBuildProjectDirectory)\_generated"/>
+	</Target>
+
+	<Target Name="GetTargetPath" Returns="$(TargetPath)"/>
+
+	<ItemGroup>
+		<None Include="**/*.*"/>
+		<None Remove="node_modules/**/*"/>
+		<None Remove=".yarn/**/*"/>
+		<None Remove=".pnp.cjs"/>
+		<None Remove=".pnp.loader.mjs"/>
+	</ItemGroup>
+
+	<Target Name="_CollectWatchItems" />
+
+</Project>

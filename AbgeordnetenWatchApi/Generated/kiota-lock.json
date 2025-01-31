@@ -1,0 +1,26 @@
+{
+  "descriptionHash": "88BBEE2C2286ACB1E9B7E6EA1D40649FF13110999E2A38F5DE1438D068B22B443F3E043F97F6AF301EDE1742774FB2E4490E8C81BDAB0C8C33EB5898658CF656",
+  "descriptionLocation": "../../AbgeordnetenWatchApi.Spec/_generated/@typespec/openapi3/openapi.yaml",
+  "lockFileVersion": "1.0.0",
+  "kiotaVersion": "1.22.3",
+  "clientClassName": "AbgeordnetenWatchApiClient",
+  "typeAccessModifier": "Public",
+  "clientNamespaceName": "AbgeordnetenWatchApi.Generated",
+  "language": "CSharp",
+  "usesBackingStore": false,
+  "excludeBackwardCompatible": true,
+  "includeAdditionalData": true,
+  "disableSSLValidation": false,
+  "serializers": [
+    "Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory"
+  ],
+  "deserializers": [
+    "Microsoft.Kiota.Serialization.Json.JsonParseNodeFactory"
+  ],
+  "structuredMimeTypes": [
+    "application/json"
+  ],
+  "includePatterns": [],
+  "excludePatterns": [],
+  "disabledValidationRules": []
+}
