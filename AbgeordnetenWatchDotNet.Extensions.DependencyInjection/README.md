@@ -12,10 +12,7 @@ using AbgeordnetenWatchDotNet.Generated;
 using Microsoft.Extensions.DependencyInjection;
 
 var services = new ServiceCollection();
-services.AddAbgeordnetenWatchApiClient("my-http-client", httpClient =>
-{
-	httpClient.BaseAddress = new Uri("https://www.abgeordnetenwatch.de/api/v2/");
-});
+services.AddAbgeordnetenWatchApiClient();
 
 var serviceProvider = services.BuildServiceProvider();
 var apiClient = serviceProvider.GetRequiredService<AbgeordnetenWatchApiClient>();

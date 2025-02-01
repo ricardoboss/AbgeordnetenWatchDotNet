@@ -28,4 +28,6 @@
 
 	<Target Name="_CollectWatchItems" />
 
+	<Target Name="GetCopyToPublishDirectoryItems" />
+
 </Project>

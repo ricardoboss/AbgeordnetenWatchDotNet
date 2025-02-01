@@ -12,10 +12,13 @@ namespace AbgeordnetenWatchDotNet.Extensions.DependencyInjection;
 [PublicAPI]
 public static class ServiceCollectionExtensions
 {
-	public static IServiceCollection AddAbgeordnetenWatchApiClient(this IServiceCollection services,
-		string httpClientName, Action<HttpClient> configureHttpClient)
+	public static IServiceCollection AddAbgeordnetenWatchApiClient(
+		this IServiceCollection services,
+		string httpClientName = "AbgeordnetenWatchApiHttpClient",
+		Action<HttpClient>? configureHttpClient = null
+	)
 	{
-		services.AddHttpClient(httpClientName, configureHttpClient);
+		services.AddHttpClient(httpClientName, configureHttpClient ?? (_ => { }));
 		services.TryAddTransient<IAuthenticationProvider, AnonymousAuthenticationProvider>();
 		services.TryAddTransient<IRequestAdapter>(sp =>
 		{
