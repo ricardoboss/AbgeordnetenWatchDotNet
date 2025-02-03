@@ -1,19 +1,20 @@
-﻿<Project DefaultTargets="Build">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetPath>$(MSBuildProjectDirectory)\_generated\@typespec\openapi3\openapi.yaml</TargetPath>
+		<BaseOutputPath>$(MSBuildProjectDirectory)/_generated/</BaseOutputPath>
+		<TargetPath>$(BaseOutputPath)@typespec\openapi3\openapi.yaml</TargetPath>
 	</PropertyGroup>
 
 	<Target Name="InstallYarnPackages">
 		<Exec Command="yarn install"/>
 	</Target>
 
-	<Target Name="Build" DependsOnTargets="InstallYarnPackages">
+	<Target Name="CoreCompile" DependsOnTargets="InstallYarnPackages">
 		<Exec Command="yarn tsp compile $(MSBuildProjectDirectory)\" LogStandardErrorAsError="true"/>
 	</Target>
 
 	<Target Name="Clean">
-		<RemoveDir Directories="$(MSBuildProjectDirectory)\_generated"/>
+		<Delete Files="$(TargetPath)"/>
 	</Target>
 
 	<Target Name="GetTargetPath" Returns="$(TargetPath)"/>
@@ -26,8 +27,38 @@
 		<None Remove=".pnp.loader.mjs"/>
 	</ItemGroup>
 
-	<Target Name="_CollectWatchItems" />
+	<ItemGroup>
+		<Watch Include="**/*.tsp" Exclude="node_modules/**/*"/>
+	</ItemGroup>
 
-	<Target Name="GetCopyToPublishDirectoryItems" />
+<!--	<Target Name="ResolveReferences"/>-->
+	<Target Name="Pack"/>
+	<Target Name="Publish"/>
+	<Target Name="CreateManifestResourceNames"/>
+
+	<PropertyGroup>
+		<!-- Completely disable .NET build logic -->
+		<OutputType>None</OutputType>
+		<EnableDefaultItems>false</EnableDefaultItems>
+		<EnableFrameworkReferences>false</EnableFrameworkReferences>
+		<DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<IsPackable>false</IsPackable>
+		<CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>
+		<CopyOutputSymbolsToOutputDirectory>false</CopyOutputSymbolsToOutputDirectory>
+		<DisableBuildTargets>true</DisableBuildTargets>
+		<ResolveAssemblyReferences>false</ResolveAssemblyReferences>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == ''">9.0</TargetFrameworkVersion>
+		<DotNetSdkRoot Condition="'$(DOTNET_ROOT)' != ''">$(DOTNET_ROOT)</DotNetSdkRoot>
+		<DotNetSdkRoot Condition="'$(DotNetSdkRoot)' == '' And '$(OS)' == 'Windows_NT'">C:\Program Files\dotnet</DotNetSdkRoot>
+		<DotNetSdkRoot Condition="'$(DotNetSdkRoot)' == ''">/usr/local/share/dotnet</DotNetSdkRoot>
+		<DotNetWatchTargets>$(DotNetSdkRoot)/sdk/$(NETCoreSdkVersion)/DotnetTools/dotnet-watch/$(NETCoreSdkVersion)*/tools/net$(TargetFrameworkVersion)/any/DotNetWatch.targets</DotNetWatchTargets>
+	</PropertyGroup>
+
+	<Import Project="$(DotNetWatchTargets)" Condition="Exists('$(DotNetWatchTargets)')"/>
 
 </Project>

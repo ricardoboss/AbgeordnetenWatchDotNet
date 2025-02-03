@@ -52,3 +52,18 @@ Building it causes the the spec to get generated.
 
 The actual API client is also generated using [kiota](https://aka.ms/kiota).
 It consumes the [API Spec](#api-spec) to generate a C# API client that is fully type-safe.
+
+### Watch
+
+To make developing this library as easy as possible, the whole toolchain supports using `dotnet watch`.
+
+This means using
+
+```shell
+dotnet watch --project ./AbgeordnetenWatchDotNet.Example/AbgeordnetenWatchDotNet.Example.csproj -- build
+```
+
+you can work on any of the files (including the .tsp-files) and changes cause the spec and the API client to get
+updated.
+
+You can also run `dotnet watch` in any of the project directories.
