@@ -35,14 +35,24 @@ model ResultMeta {
 	count: integer;
 	total: integer;
 
+	@pageIndex
 	page?: integer;
 
+	@pageSize
 	@encodedName("application/json", "results_per_page")
 	resultsPerPage?: integer;
 
+	@offset
 	@encodedName("application/json", "range_start")
 	rangeStart?: integer;
 
 	@encodedName("application/json", "range_end")
 	rangeEnd?: integer;
+
+	@encodedName("application/json", "entity_id")
+	@encode(string)
+	entityId?: integer;
+
+	@encodedName("application/json", "entity_type")
+	entityType?: string;
 }

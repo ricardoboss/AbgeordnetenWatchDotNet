@@ -10,6 +10,7 @@ namespace AbgeordnetenWatch.Parliaments;
 
 model AllQueryOptions {
 	...LabelQueryOption;
+	...EntityListQueryOptions;
 
 	@query
 	@encodedName("application/json", "label_external_long")

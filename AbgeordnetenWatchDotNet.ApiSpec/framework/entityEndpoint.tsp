@@ -4,7 +4,7 @@ import "./response.tsp";
 namespace AbgeordnetenWatch;
 
 interface EntityEndpoint<TEntity extends Entity> {
-  all<TOptions = {}>(...TOptions): ListResponse<TEntity>;
+  all<TOptions = {}>(...TOptions): ListResponse<TEntity> | ErrorResponse;
 
-  get<TOptions = {}>(id: integer, ...TOptions): EntityResponse<TEntity>;
+  get<TOptions = {}>(id: integer, ...TOptions): EntityResponse<TEntity> | ErrorResponse;
 }
