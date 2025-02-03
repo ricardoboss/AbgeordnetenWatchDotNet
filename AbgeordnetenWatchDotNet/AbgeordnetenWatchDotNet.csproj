@@ -14,7 +14,7 @@
 		<GeneratedSpecProject>AbgeordnetenWatchDotNet.ApiSpec</GeneratedSpecProject>
 		<GeneratedSpecProjectDir>$(MSBuildThisFileDirectory)../$(GeneratedSpecProject)/</GeneratedSpecProjectDir>
 		<GeneratedSpecProjectFile>$(GeneratedSpecProjectDir)$(GeneratedSpecProject).proj</GeneratedSpecProjectFile>
-		<GeneratedClientSpecFile>$(GeneratedSpecProjectDir)_generated/@typespec/openapi3/openapi.yaml</GeneratedClientSpecFile>
+		<GeneratedClientSpecFile>$(GeneratedSpecProjectDir)bin/@typespec/openapi3/openapi.yaml</GeneratedClientSpecFile>
 		<GeneratedClientDirectory>$(MSBuildThisFileDirectory)Generated/</GeneratedClientDirectory>
 		<GeneratedClientClassName>AbgeordnetenWatchApiClient</GeneratedClientClassName>
 		<GeneratedClientNamespace>$(RootNamespace).Generated</GeneratedClientNamespace>

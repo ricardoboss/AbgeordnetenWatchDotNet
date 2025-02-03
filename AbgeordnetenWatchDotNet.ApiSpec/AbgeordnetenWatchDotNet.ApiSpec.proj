@@ -1,16 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<BaseOutputPath>$(MSBuildProjectDirectory)/_generated/</BaseOutputPath>
 		<TargetPath>$(BaseOutputPath)@typespec\openapi3\openapi.yaml</TargetPath>
 	</PropertyGroup>
 
 	<Target Name="InstallYarnPackages">
-		<Exec Command="yarn install"/>
+		<Exec Command="yarn install --immutable --immutable-cache --check-cache"/>
 	</Target>
 
 	<Target Name="CoreCompile" DependsOnTargets="InstallYarnPackages">
-		<Exec Command="yarn tsp compile $(MSBuildProjectDirectory)\" LogStandardErrorAsError="true"/>
+		<Exec Command="yarn tsp compile $(MSBuildProjectDirectory) --output-dir $(BaseOutputPath)" LogStandardErrorAsError="true"/>
 	</Target>
 
 	<Target Name="Clean">
@@ -28,7 +27,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Watch Include="**/*.tsp" Exclude="node_modules/**/*"/>
+		<Watch Include="**/*.tsp"/>
+		<Watch Remove="node_modules/**/*"/>
+		<Watch Remove="$(TargetPath)"/>
 	</ItemGroup>
 
 <!--	<Target Name="ResolveReferences"/>-->
