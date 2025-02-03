@@ -9,7 +9,7 @@ model Meta {
 	@encodedName("application/json", "status_message")
 	statusMessage: string;
 
-	result: PagedResultMeta | FullResultMeta;
+	result: ResultMeta;
 }
 
 model ApiMeta {
@@ -31,26 +31,18 @@ enum Status {
 	error,
 }
 
-alias ResultMeta = {
+model ResultMeta {
 	count: integer;
 	total: integer;
-};
 
-model PagedResultMeta {
-	...ResultMeta;
-
-	page: integer;
+	page?: integer;
 
 	@encodedName("application/json", "results_per_page")
-	resultsPerPage: integer;
-}
-
-model FullResultMeta {
-	...ResultMeta;
+	resultsPerPage?: integer;
 
 	@encodedName("application/json", "range_start")
-	rangeStart: integer;
+	rangeStart?: integer;
 
 	@encodedName("application/json", "range_end")
-	rangeEnd: integer;
+	rangeEnd?: integer;
 }
