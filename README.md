@@ -26,3 +26,29 @@ foreach (var parliament in result?.Data ?? [])
 # License
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/ricardoboss/AbgeordnetenWatchDotNet/blob/main/LICENSE.md) file for details.
+
+# Development
+
+## Setup
+
+- You need to have [.NET 9 or later](https://dotnet.microsoft.com/en-us/download) installed
+- You need to have [corepack](https://yarnpkg.com/corepack) enabled
+  - This also requires [Node 16.9 or later](https://nodejs.org/en/download)
+
+## Code generation
+
+This project relies heavily on code generation.
+
+### API Spec
+
+Since the API spec is not available as an OpenAPI specification, we generate our own using
+[typespec](https://typespec.io).
+
+The spec is generated using MSBuild and the typespec compiler in the
+[`AbgeordnetenWatchDotNet.ApiSpec`](./AbgeordnetenWatchDotNet.ApiSpec) project.
+Building it causes the the spec to get generated.
+
+### API Client
+
+The actual API client is also generated using [kiota](https://aka.ms/kiota).
+It consumes the [API Spec](#api-spec) to generate a C# API client that is fully type-safe.

@@ -4,11 +4,11 @@
 		<TargetPath>$(MSBuildProjectDirectory)\_generated\@typespec\openapi3\openapi.yaml</TargetPath>
 	</PropertyGroup>
 
-	<Target Name="Restore">
+	<Target Name="InstallYarnPackages">
 		<Exec Command="yarn install"/>
 	</Target>
 
-	<Target Name="Build">
+	<Target Name="Build" DependsOnTargets="InstallYarnPackages">
 		<Exec Command="yarn tsp compile $(MSBuildProjectDirectory)\" LogStandardErrorAsError="true"/>
 	</Target>
 
