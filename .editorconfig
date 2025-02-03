@@ -9,10 +9,6 @@ trim_trailing_whitespace = true
 [*.md]
 trim_trailing_whitespace = false
 
-[*.tsp]
-indent_style = tab
-indent_size = 2
-
 [*.{csproj,proj,props,targets}]
 indent_style = tab
 indent_size = 2
