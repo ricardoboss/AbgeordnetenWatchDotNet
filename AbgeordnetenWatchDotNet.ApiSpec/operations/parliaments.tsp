@@ -13,8 +13,7 @@ model AllQueryOptions {
 	...EntityListQueryOptions;
 
 	@query
-	@encodedName("application/json", "label_external_long")
-	labelExternalLong?: string;
+	label_external_long?: string;
 }
 
 

@@ -12,12 +12,10 @@ model AllQueryOptions {
 	...LabelQueryOption;
 
 	@query
-	@encodedName("application/json", "full_name")
-	fullName?: string;
+	full_name?: string;
 
 	@query
-	@encodedName("application/json", "short_name")
-	shortName?: string;
+	short_name?: string;
 }
 
 alias Endpoints = EntityEndpoint<Party>;

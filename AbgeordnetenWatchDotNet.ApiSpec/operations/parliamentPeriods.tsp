@@ -14,16 +14,13 @@ model AllQueryOptions {
 	type?: string;
 
 	@query
-	@encodedName("application/json", "election_date")
-	electionDate?: plainDate;
+	election_date?: plainDate;
 
 	@query
-	@encodedName("application/json", "start_date_period")
-	startDatePeriod?: plainDate;
+	start_date_period?: plainDate;
 
 	@query
-	@encodedName("application/json", "end_date_period")
-	endDatePeriod?: plainDate;
+	end_date_period?: plainDate;
 }
 
 alias Endpoints = EntityEndpoint<ParliamentPeriod>;

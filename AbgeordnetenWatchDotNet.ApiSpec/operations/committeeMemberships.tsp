@@ -12,8 +12,7 @@ model AllQueryOptions {
 	...LabelQueryOption;
 
 	@query
-	@encodedName("application/json", "committee_role")
-	committeeRole?: string;
+	committee_role?: string;
 }
 
 alias Endpoints = EntityEndpoint<CommitteeMembership>;

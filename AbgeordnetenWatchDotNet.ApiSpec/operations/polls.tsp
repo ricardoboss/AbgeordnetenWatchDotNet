@@ -12,8 +12,7 @@ model AllQueryOptions {
 	...LabelQueryOption;
 
 	@query
-	@encodedName("application/json", "field_accepted")
-	fieldAccepted?: 1 | 0;
+	field_accepted?: 1 | 0;
 }
 
 alias Endpoints = EntityEndpoint<Poll>;
