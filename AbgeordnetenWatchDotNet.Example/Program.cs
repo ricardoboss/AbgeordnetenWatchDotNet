@@ -1,4 +1,4 @@
-﻿using AbgeordnetenWatchDotNet.Extensions.Requests;
+﻿using AbgeordnetenWatchDotNet.Extensions;
 using AbgeordnetenWatchDotNet.Generated;
 using AbgeordnetenWatchDotNet.Generated.Models;
 using Microsoft.Kiota.Abstractions.Authentication;
@@ -12,7 +12,7 @@ try
 {
 	var c = await client.Parliaments.GetAsync(r =>
 	{
-		r.WhereId().Between(1, 10);
+		r.WhereId().LessThan(3);
 	});
 
 	foreach (var parliament in c!.Data!)
