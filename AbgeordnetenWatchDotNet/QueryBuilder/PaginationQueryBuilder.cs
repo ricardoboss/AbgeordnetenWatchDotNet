@@ -1,4 +1,5 @@
-﻿using Microsoft.Kiota.Abstractions;
+﻿using AbgeordnetenWatchDotNet.Generated.Models;
+using Microsoft.Kiota.Abstractions;
 
 namespace AbgeordnetenWatchDotNet.QueryBuilder;
 
@@ -11,7 +12,7 @@ public class PaginationQueryBuilder<T>(RequestConfiguration<T> requestConfigurat
 		return this;
 	}
 
-	public PaginationQueryBuilder<T> WithPageSize(int value)
+	public PaginationQueryBuilder<T> PageSize(int value)
 	{
 		requestConfiguration.QueryParameters.RangeEnd = value;
 
@@ -33,6 +34,14 @@ public class PaginationQueryBuilder<T>(RequestConfiguration<T> requestConfigurat
 	}
 
 	public RequestConfiguration<T> And() => requestConfiguration;
+
+	public PaginationQueryBuilder<T> ContinuedFrom(ResultMeta meta)
+	{
+		requestConfiguration.QueryParameters.RangeStart = meta.RangeStart + meta.Count;
+		requestConfiguration.QueryParameters.RangeEnd = meta.RangeEnd;
+
+		return this;
+	}
 }
 
 public static class PaginationQueryBuilderExtensions

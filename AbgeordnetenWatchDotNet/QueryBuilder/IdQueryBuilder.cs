@@ -1,7 +1,9 @@
-﻿using Microsoft.Kiota.Abstractions;
+﻿using JetBrains.Annotations;
+using Microsoft.Kiota.Abstractions;
 
 namespace AbgeordnetenWatchDotNet.QueryBuilder;
 
+[PublicAPI]
 public class IdQueryBuilder<T>(RequestConfiguration<T> requestConfiguration) where T : class, IIdQueryOptions, new()
 {
 	public IdQueryBuilder<T> Between(int? min, int? max)
