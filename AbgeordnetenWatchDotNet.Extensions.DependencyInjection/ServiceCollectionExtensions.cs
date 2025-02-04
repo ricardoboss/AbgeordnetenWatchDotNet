@@ -18,7 +18,7 @@ public static class ServiceCollectionExtensions
 		Action<HttpClient>? configureHttpClient = null
 	)
 	{
-		services.AddHttpClient(httpClientName, configureHttpClient ?? (_ => { }));
+		services.AddHttpClient(httpClientName, configureHttpClient ?? DefaultConfigureHttpClient);
 		services.TryAddTransient<IAuthenticationProvider, AnonymousAuthenticationProvider>();
 		services.TryAddTransient<IRequestAdapter>(sp =>
 		{
@@ -34,5 +34,11 @@ public static class ServiceCollectionExtensions
 		services.TryAddTransient<AbgeordnetenWatchApiClient>();
 
 		return services;
+	}
+
+	private static void DefaultConfigureHttpClient(HttpClient client)
+	{
+		client.DefaultRequestHeaders.UserAgent.Add(new("AbgeordnetenWatchDotNet", "1.0.0"));
+		client.DefaultRequestHeaders.UserAgent.Add(new("(+https://github.com/ricardoboss/AbgeordnetenWatchDotNet)"));
 	}
 }

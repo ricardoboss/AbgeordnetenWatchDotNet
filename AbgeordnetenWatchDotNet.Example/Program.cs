@@ -1,19 +1,18 @@
 ﻿using AbgeordnetenWatchDotNet.Extensions;
+using AbgeordnetenWatchDotNet.Extensions.DependencyInjection;
 using AbgeordnetenWatchDotNet.Generated;
 using AbgeordnetenWatchDotNet.Generated.Models;
-using Microsoft.Kiota.Abstractions.Authentication;
-using Microsoft.Kiota.Http.HttpClientLibrary;
+using Microsoft.Extensions.DependencyInjection;
 
-var authenticationProvider = new AnonymousAuthenticationProvider();
-var adapter = new HttpClientRequestAdapter(authenticationProvider);
-var client = new AbgeordnetenWatchApiClient(adapter);
+var services = new ServiceCollection();
+services.AddAbgeordnetenWatchApiClient();
+
+var serviceProvider = services.BuildServiceProvider();
+var client = serviceProvider.GetRequiredService<AbgeordnetenWatchApiClient>();
 
 try
 {
-	var c = await client.Parliaments.GetAsync(r =>
-	{
-		r.WhereId().LessThan(3);
-	});
+	var c = await client.Parliaments.GetAsync(r => r.WhereId().LessThan(3));
 
 	foreach (var parliament in c!.Data!)
 	{
