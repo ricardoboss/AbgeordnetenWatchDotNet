@@ -13,4 +13,4 @@ emit:
 # trace:                                        # Trace areas to enable tracing
 #  - "<trace-name>"
 # warn-as-error: true                           # Treat warnings as errors
-output-dir: "{project-root}/_generated"       # Configure the base output directory for all emitters
+output-dir: "{project-root}/bin"       # Configure the base output directory for all emitters
