@@ -28,8 +28,6 @@
 
 	<ItemGroup>
 		<Watch Include="**/*.tsp"/>
-		<Watch Remove="node_modules/**/*"/>
-		<Watch Remove="$(TargetPath)"/>
 	</ItemGroup>
 
 <!--	<Target Name="ResolveReferences"/>-->
