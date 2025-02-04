@@ -8,33 +8,26 @@ model IdQueryOptions {
 	@query
 	id?: uint32;
 
-	@query
-	@encodedName("application/x-www-form-urlencoded", "id[gt]")
+	@query("id[gt]")
 	idGreaterThan?: uint32;
 
-	@query
-	@encodedName("application/x-www-form-urlencoded", "id[gte]")
+	@query("id[gte]")
 	idGreaterThanOrEqual?: uint32;
 
-	@query
-	@encodedName("application/x-www-form-urlencoded", "id[lt]")
+	@query("id[lt]")
 	idLessThan?: uint32;
 
-	@query
-	@encodedName("application/x-www-form-urlencoded", "id[lte]")
+	@query("id[lte]")
 	idLessThanOrEqual?: uint32;
 
-	@query
-	@encodedName("application/x-www-form-urlencoded", "id[ne]")
+	@query("id[ne]")
 	idNotEqual?: uint32;
 
-	@query
-	@encodedName("application/x-www-form-urlencoded", "id[in]")
-	idIn?: uint32[];
+	@query("id[in]")
+	idIn?: string;
 
-	@query
-	@encodedName("application/x-www-form-urlencoded", "id[notin]")
-	idNotIn?: uint32[];
+	@query("id[notin]")
+	idNotIn?: string;
 }
 
 model LabelQueryOption {
@@ -43,20 +36,17 @@ model LabelQueryOption {
 }
 
 model PaginationQueryOptions {
-	@query
-	@encodedName("application/x-www-form-urlencoded", "range_start")
+	@query("range_start")
 	rangeStart?: uint32;
 
-	@query
-	@encodedName("application/x-www-form-urlencoded", "range_end")
+	@query("range_end")
 	@maxValue(1000)
 	rangeEnd?: uint32;
 
 	@query
 	page?: uint32;
 
-	@query
-	@encodedName("application/json", "pager_limit")
+	@query("pager_limit")
 	@maxValue(1000)
 	pagerLimit?: uint32;
 }
@@ -67,7 +57,6 @@ model EntityListQueryOptions {
 }
 
 model RelatedDataQueryOption {
-	@query
-	@encodedName("application/json", "related_data")
+	@query("related_data")
 	relatedData?: "show_information";
 }
