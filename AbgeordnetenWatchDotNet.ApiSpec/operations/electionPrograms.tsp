@@ -6,7 +6,7 @@ import "../framework/queryOptions.tsp";
 
 using TypeSpec.Http;
 
-namespace AbgeordnetenWatch.ElectrionPrograms;
+namespace AbgeordnetenWatch.ElectionPrograms;
 
 model AllQueryOptions {
 	...EntityListQueryOptions;

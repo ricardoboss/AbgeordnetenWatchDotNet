@@ -127,7 +127,7 @@ namespace AbgeordnetenWatch {
 	}
 
 	@route("/election-program")
-	namespace ElectrionPrograms {
+	namespace ElectionPrograms {
 		op all is All;
 
 		@route("/{id}")
