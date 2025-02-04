@@ -9,7 +9,6 @@ using TypeSpec.Http;
 namespace AbgeordnetenWatch.Polls;
 
 model AllQueryOptions {
-	...LabelQueryOption;
 	...EntityListQueryOptions;
 
 	@query

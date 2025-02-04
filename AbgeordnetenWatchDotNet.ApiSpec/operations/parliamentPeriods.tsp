@@ -10,9 +10,6 @@ model AllQueryOptions {
 	...EntityListQueryOptions;
 
 	@query
-	label?: string;
-
-	@query
 	type?: string;
 
 	@query

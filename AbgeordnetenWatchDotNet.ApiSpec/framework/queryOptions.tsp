@@ -30,9 +30,50 @@ model IdQueryOptions {
 	idNotIn?: string;
 }
 
-model LabelQueryOption {
+model NumberQueryOptions {
+	@query
+	number?: uint32;
+
+	@query("number[gt]")
+	numberGreaterThan?: uint32;
+
+	@query("number[gte]")
+	numberGreaterThanOrEqual?: uint32;
+
+	@query("number[lt]")
+	numberLessThan?: uint32;
+
+	@query("number[lte]")
+	numberLessThanOrEqual?: uint32;
+
+	@query("number[ne]")
+	numberNotEqual?: uint32;
+
+	@query("number[in]")
+	numberIn?: string;
+
+	@query("number[notin]")
+	numberNotIn?: string;
+}
+
+model LabelQueryOptions {
 	@query
 	label?: string;
+
+	@query("label[sw]")
+	labelStartsWith?: string;
+
+	@query("label[cn]")
+	labelContains?: string;
+
+	@query("label[ew]")
+	labelEndsWith?: string;
+
+	@query("label[in]")
+	labelIn?: string;
+
+	@query("label[notin]")
+	labelNotIn?: string;
 }
 
 model PaginationQueryOptions {
@@ -53,6 +94,7 @@ model PaginationQueryOptions {
 
 model EntityListQueryOptions {
 	...IdQueryOptions;
+	...LabelQueryOptions;
 	...PaginationQueryOptions;
 }
 
