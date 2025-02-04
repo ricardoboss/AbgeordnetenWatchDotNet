@@ -7,6 +7,8 @@ using TypeSpec.Http;
 namespace AbgeordnetenWatch.ParliamentPeriods;
 
 model AllQueryOptions {
+	...EntityListQueryOptions;
+
 	@query
 	label?: string;
 

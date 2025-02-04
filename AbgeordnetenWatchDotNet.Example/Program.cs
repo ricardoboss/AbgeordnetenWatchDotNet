@@ -1,7 +1,7 @@
-﻿using AbgeordnetenWatchDotNet.Extensions;
-using AbgeordnetenWatchDotNet.Extensions.DependencyInjection;
+﻿using AbgeordnetenWatchDotNet.Extensions.DependencyInjection;
 using AbgeordnetenWatchDotNet.Generated;
 using AbgeordnetenWatchDotNet.Generated.Models;
+using AbgeordnetenWatchDotNet.QueryBuilder;
 using Microsoft.Extensions.DependencyInjection;
 
 var services = new ServiceCollection();
@@ -12,7 +12,10 @@ var client = serviceProvider.GetRequiredService<AbgeordnetenWatchApiClient>();
 
 try
 {
-	var c = await client.Parliaments.GetAsync(r => r.WhereId().LessThan(3));
+	var c = await client.Parliaments.GetAsync(r =>
+	{
+		r.Id().LessThan(3).And().Pagination().StartingAt(1);
+	});
 
 	foreach (var parliament in c!.Data!)
 	{

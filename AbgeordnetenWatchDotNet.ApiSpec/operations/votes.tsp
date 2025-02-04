@@ -9,6 +9,8 @@ using TypeSpec.Http;
 namespace AbgeordnetenWatch.Votes;
 
 model AllQueryOptions {
+	...EntityListQueryOptions;
+
 	@query
 	vote?: VoteResult;
 

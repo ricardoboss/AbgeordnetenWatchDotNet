@@ -10,6 +10,7 @@ namespace AbgeordnetenWatch.Parties;
 
 model AllQueryOptions {
 	...LabelQueryOption;
+	...EntityListQueryOptions;
 
 	@query
 	full_name?: string;

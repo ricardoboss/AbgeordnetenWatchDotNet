@@ -8,6 +8,11 @@ using TypeSpec.Http;
 
 namespace AbgeordnetenWatch.Committees;
 
+model AllQueryOptions {
+	...LabelQueryOption;
+	...EntityListQueryOptions;
+}
+
 alias Endpoints = EntityEndpoint<Committee>;
-alias All = Endpoints.all<LabelQueryOption>;
+alias All = Endpoints.all<AllQueryOptions>;
 alias Single = Endpoints.get;

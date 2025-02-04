@@ -10,6 +10,7 @@ namespace AbgeordnetenWatch.Constituencies;
 
 model AllQueryOptions {
 	...LabelQueryOption;
+	...EntityListQueryOptions;
 
 	@query
 	name?: string;

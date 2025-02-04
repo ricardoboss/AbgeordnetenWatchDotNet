@@ -5,5 +5,5 @@ namespace AbgeordnetenWatchDotNet.Generated.Parliaments;
 
 public partial class ParliamentsRequestBuilder
 {
-	public partial class ParliamentsRequestBuilderGetQueryParameters : IIdQueryOptions;
+	public partial class ParliamentsRequestBuilderGetQueryParameters : IEntityListQueryOptions;
 }

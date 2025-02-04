@@ -4,28 +4,78 @@ namespace AbgeordnetenWatchDotNet.QueryBuilder;
 
 public class IdQueryBuilder<T>(RequestConfiguration<T> requestConfiguration) where T : class, IIdQueryOptions, new()
 {
-	public void Between(int? min = null, int? max = null)
+	public IdQueryBuilder<T> Between(int? min, int? max)
 	{
 		if (min is not null)
 			requestConfiguration.QueryParameters.Idgte = min;
 
 		if (max is not null)
 			requestConfiguration.QueryParameters.Idlte = max;
+
+		return this;
 	}
 
-	public void Equals(int value) => requestConfiguration.QueryParameters.Id = value;
+	public IdQueryBuilder<T> Equals(int value)
+	{
+		requestConfiguration.QueryParameters.Id = value;
 
-	public void GreaterThan(int value) => requestConfiguration.QueryParameters.Idgt = value;
+		return this;
+	}
 
-	public void GreaterThanOrEquals(int value) => requestConfiguration.QueryParameters.Idgte = value;
+	public IdQueryBuilder<T> GreaterThan(int value)
+	{
+		requestConfiguration.QueryParameters.Idgt = value;
 
-	public void LessThan(int value) => requestConfiguration.QueryParameters.Idlt = value;
+		return this;
+	}
 
-	public void LessThanOrEquals(int value) => requestConfiguration.QueryParameters.Idlte = value;
+	public IdQueryBuilder<T> GreaterThanOrEquals(int value)
+	{
+		requestConfiguration.QueryParameters.Idgte = value;
 
-	public void NotEquals(int value) => requestConfiguration.QueryParameters.Idne = value;
+		return this;
+	}
 
-	public void In(params int[] values) => requestConfiguration.QueryParameters.Idin = $"[{string.Join(",", values)}]";
+	public IdQueryBuilder<T> LessThan(int value)
+	{
+		requestConfiguration.QueryParameters.Idlt = value;
 
-	public void NotIn(params int[] values) => requestConfiguration.QueryParameters.Idnotin = $"[{string.Join(",", values)}]";
+		return this;
+	}
+
+	public IdQueryBuilder<T> LessThanOrEquals(int value)
+	{
+		requestConfiguration.QueryParameters.Idlte = value;
+
+		return this;
+	}
+
+	public IdQueryBuilder<T> NotEquals(int value)
+	{
+		requestConfiguration.QueryParameters.Idne = value;
+
+		return this;
+	}
+
+	public IdQueryBuilder<T> In(params int[] values)
+	{
+		requestConfiguration.QueryParameters.Idin = $"[{string.Join(",", values)}]";
+
+		return this;
+	}
+
+	public IdQueryBuilder<T> NotIn(params int[] values)
+	{
+		requestConfiguration.QueryParameters.Idnotin = $"[{string.Join(",", values)}]";
+
+		return this;
+	}
+
+	public RequestConfiguration<T> And() => requestConfiguration;
+}
+
+public static class IdQueryBuilderExtensions
+{
+	public static IdQueryBuilder<T> Id<T>(this RequestConfiguration<T> requestConfiguration)
+		where T : class, IIdQueryOptions, new() => new(requestConfiguration);
 }

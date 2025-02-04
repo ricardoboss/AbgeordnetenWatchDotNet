@@ -10,6 +10,7 @@ namespace AbgeordnetenWatch.Polls;
 
 model AllQueryOptions {
 	...LabelQueryOption;
+	...EntityListQueryOptions;
 
 	@query
 	field_accepted?: 1 | 0;

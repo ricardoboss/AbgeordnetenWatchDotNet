@@ -10,6 +10,7 @@ namespace AbgeordnetenWatch.CommitteeMemberships;
 
 model AllQueryOptions {
 	...LabelQueryOption;
+	...EntityListQueryOptions;
 
 	@query
 	committee_role?: string;

@@ -36,19 +36,19 @@ model LabelQueryOption {
 }
 
 model PaginationQueryOptions {
-	@query("range_start")
-	rangeStart?: uint32;
+	@query
+	range_start?: uint32;
 
-	@query("range_end")
+	@query
 	@maxValue(1000)
-	rangeEnd?: uint32;
+	range_end?: uint32;
 
 	@query
 	page?: uint32;
 
-	@query("pager_limit")
+	@query
 	@maxValue(1000)
-	pagerLimit?: uint32;
+	pager_limit?: uint32;
 }
 
 model EntityListQueryOptions {
@@ -57,6 +57,6 @@ model EntityListQueryOptions {
 }
 
 model RelatedDataQueryOption {
-	@query("related_data")
-	relatedData?: "show_information";
+	@query
+	related_data?: "show_information";
 }

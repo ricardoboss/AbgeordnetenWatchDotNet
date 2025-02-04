@@ -8,8 +8,8 @@ using TypeSpec.Http;
 namespace AbgeordnetenWatch.CandidaciesMandates;
 
 model AllQueryOptions {
-	@query
-	label?: string;
+	...LabelQueryOption;
+	...EntityListQueryOptions;
 
 	@query
 	id_external_administration?: string;

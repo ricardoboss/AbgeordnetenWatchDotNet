@@ -10,6 +10,7 @@ namespace AbgeordnetenWatch.Fractions;
 
 model AllQueryOptions {
 	...LabelQueryOption;
+	...EntityListQueryOptions;
 
 	@query
 	full_name?: string;
