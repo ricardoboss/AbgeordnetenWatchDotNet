@@ -14,6 +14,9 @@ import "./operations/fractions.tsp";
 import "./operations/electoralLists.tsp";
 import "./operations/constituencies.tsp";
 import "./operations/electionPrograms.tsp";
+import "./operations/countries.tsp";
+import "./operations/cities.tsp";
+import "./operations/topics.tsp";
 
 using TypeSpec.OpenAPI;
 using TypeSpec.Http;
@@ -128,6 +131,30 @@ namespace AbgeordnetenWatch {
 
 	@route("/election-program")
 	namespace ElectionPrograms {
+		op all is All;
+
+		@route("/{id}")
+		op single is Single;
+	}
+
+	@route("/countries")
+	namespace Countries {
+		op all is All;
+
+		@route("/{id}")
+		op single is Single;
+	}
+
+	@route("/cities")
+	namespace Cities {
+		op all is All;
+
+		@route("/{id}")
+		op single is Single;
+	}
+
+	@route("/topics")
+	namespace Topics {
 		op all is All;
 
 		@route("/{id}")

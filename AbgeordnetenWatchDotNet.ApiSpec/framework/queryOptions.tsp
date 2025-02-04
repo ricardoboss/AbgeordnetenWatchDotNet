@@ -76,6 +76,26 @@ model LabelQueryOptions {
 	labelNotIn?: string;
 }
 
+model DescriptionQueryOptions {
+	@query
+	description?: string;
+
+	@query("description[sw]")
+	descriptionStartsWith?: string;
+
+	@query("description[cn]")
+	descriptionContains?: string;
+
+	@query("description[ew]")
+	descriptionEndsWith?: string;
+
+	@query("description[in]")
+	descriptionIn?: string;
+
+	@query("description[notin]")
+	descriptionNotIn?: string;
+}
+
 model PaginationQueryOptions {
 	@query
 	range_start?: uint32;
