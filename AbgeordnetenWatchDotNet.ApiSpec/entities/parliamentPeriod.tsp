@@ -4,6 +4,8 @@ import "../framework/reference.tsp";
 
 namespace AbgeordnetenWatch;
 
+alias ParliamentPeriodType = "election" | "legislature";
+
 model ParliamentPeriod extends RegularEntity {
   @summary("Definiert das Parlament, zu dem diese Parlamentsperiode gehört")
   parliament: Reference<Parliament>;
@@ -12,7 +14,7 @@ model ParliamentPeriod extends RegularEntity {
   @encodedName("application/json", "previous_period")
   previousPeriod: Reference<ParliamentPeriod>;
 
-  type: string;
+  type: ParliamentPeriodType;
 
   @encodedName("application/json", "election_date")
   electionDate: plainDate;

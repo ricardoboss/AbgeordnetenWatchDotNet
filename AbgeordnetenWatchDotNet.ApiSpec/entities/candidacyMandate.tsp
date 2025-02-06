@@ -8,6 +8,8 @@ import "../framework/reference.tsp";
 
 namespace AbgeordnetenWatch;
 
+alias CandidacyMandateType = "candidacy" | "mandate";
+
 model CandidacyMandate extends Entity {
 	@encodedName("application/json", "id_external_administration")
 	idExternalAdministration: string;
@@ -15,7 +17,7 @@ model CandidacyMandate extends Entity {
 	@encodedName("application/json", "id_external_administration_description")
 	idExternalAdministrationDescription: string;
 
-	type: "candidacy" | "mandate";
+	type: CandidacyMandateType;
 
 	@encodedName("application/json", "parliament_period")
 	parliamentPeriod: Reference<ParliamentPeriod>;

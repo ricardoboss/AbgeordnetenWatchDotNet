@@ -2,6 +2,8 @@ import "@typespec/http";
 
 import "../entities/candidacyMandate.tsp";
 import "../framework/entityEndpoint.tsp";
+import "./references/parliament_period.tsp";
+import "./references/electoral_data.tsp";
 
 using TypeSpec.Http;
 
@@ -9,6 +11,8 @@ namespace AbgeordnetenWatch.CandidaciesMandates;
 
 model AllQueryOptions {
 	...EntityListQueryOptions;
+	...ParliamentPeriodReferenceQueryOptions;
+	...ElectoralDataReferenceQueryOptions;
 
 	@query
 	id_external_administration?: string;
@@ -17,7 +21,7 @@ model AllQueryOptions {
 	id_external_administration_description?: string;
 
 	@query
-	type?: string;
+	type?: CandidacyMandateType;
 
 	@query
 	start_date?: plainDate;

@@ -96,6 +96,26 @@ model DescriptionQueryOptions {
 	descriptionNotIn?: string;
 }
 
+model NameQueryOptions {
+	@query
+	name?: string;
+
+	@query("name[sw]")
+	nameStartsWith?: string;
+
+	@query("name[cn]")
+	nameContains?: string;
+
+	@query("name[ew]")
+	nameEndsWith?: string;
+
+	@query("name[in]")
+	nameIn?: string;
+
+	@query("name[notin]")
+	nameNotIn?: string;
+}
+
 model PaginationQueryOptions {
 	@query
 	range_start?: uint32;

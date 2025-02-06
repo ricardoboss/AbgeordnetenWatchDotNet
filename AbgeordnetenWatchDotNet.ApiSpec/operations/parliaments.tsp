@@ -3,6 +3,7 @@ import "@typespec/http";
 import "../entities/parliament.tsp";
 import "../framework/entityEndpoint.tsp";
 import "../framework/queryOptions.tsp";
+import "./references/current_project.tsp";
 
 using TypeSpec.Http;
 
@@ -10,6 +11,7 @@ namespace AbgeordnetenWatch.Parliaments;
 
 model AllQueryOptions {
 	...EntityListQueryOptions;
+	...CurrentProjectReferenceQueryOptions;
 
 	@query
 	label_external_long?: string;

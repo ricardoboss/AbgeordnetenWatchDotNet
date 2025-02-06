@@ -3,6 +3,7 @@ import "@typespec/http";
 import "../entities/constituency.tsp";
 import "../framework/entityEndpoint.tsp";
 import "../framework/queryOptions.tsp";
+import "./references/parliament_period.tsp";
 
 using TypeSpec.Http;
 
@@ -10,12 +11,9 @@ namespace AbgeordnetenWatch.Constituencies;
 
 model AllQueryOptions {
 	...EntityListQueryOptions;
-
-	@query
-	name?: string;
-
-	@query
-	number?: integer;
+	...NameQueryOptions;
+	...NumberQueryOptions;
+	...ParliamentPeriodReferenceQueryOptions;
 }
 
 alias Endpoints = EntityEndpoint<Constituency>;
