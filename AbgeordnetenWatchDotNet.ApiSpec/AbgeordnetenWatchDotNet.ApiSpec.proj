@@ -51,7 +51,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == ''">9.0</TargetFrameworkVersion>
+		<TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == ''">10.0</TargetFrameworkVersion>
 		<DotNetSdkRoot Condition="'$(DOTNET_ROOT)' != ''">$(DOTNET_ROOT)</DotNetSdkRoot>
 		<DotNetSdkRoot Condition="'$(DotNetSdkRoot)' == '' And '$(OS)' == 'Windows_NT'">C:\Program Files\dotnet</DotNetSdkRoot>
 		<DotNetSdkRoot Condition="'$(DotNetSdkRoot)' == ''">/usr/local/share/dotnet</DotNetSdkRoot>
