@@ -3,12 +3,14 @@
 	<!-- NuGet package properties -->
 	<PropertyGroup>
 		<PackageVersion>1.0.0</PackageVersion>
+		<Description>An API client for the abgeordnetenwatch.de website.</Description>
+		<PackageTags>AbgeordnetenWatch;API;kiota</PackageTags>
+
 		<Authors>Ricardo Boss</Authors>
 		<Copyright>Copyright © 2025 Ricardo Boss</Copyright>
-		<PackageTags>AbgeordnetenWatch;API;kiota</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/ricardoboss/AbgeordnetenWatchDotNet</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageProjectUrl>https://github.com/ricardoboss/AbgeordnetenWatchDotNet</PackageProjectUrl>
 
 		<RepositoryUrl>https://github.com/ricardoboss/AbgeordnetenWatchDotNet</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
@@ -32,7 +34,7 @@
 		</PropertyGroup>
 	</Target>
 
-	<ItemGroup Condition="'$(Configuration)' == 'Release'">
+	<ItemGroup Condition="'$(IsPackable)' == 'true' And '$(Configuration)' == 'Release'">
 		<None Include="../LICENSE.md" Pack="true" PackagePath="\" />
 		<None Include="$(ReadmePath)" Pack="true" PackagePath="\" />
 	</ItemGroup>
