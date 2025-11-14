@@ -12,15 +12,15 @@ var client = serviceProvider.GetRequiredService<AbgeordnetenWatchApiClient>();
 
 try
 {
-	var c = await client.Parliaments.GetAsync(r =>
-	{
-		r.Id().LessThan(3).And().Pagination().StartingAt(1);
-	});
-
-	foreach (var parliament in c!.Data!)
-	{
-		Console.WriteLine(parliament.LabelExternalLong);
-	}
+	// var c = await client.Parliaments.GetAsync(r =>
+	// {
+	// 	r.Id().LessThan(3).And().Pagination().StartingAt(1);
+	// });
+	//
+	// foreach (var parliament in c!.Data!)
+	// {
+	// 	Console.WriteLine(parliament.LabelExternalLong);
+	// }
 }
 catch (ErrorResponse e)
 {
