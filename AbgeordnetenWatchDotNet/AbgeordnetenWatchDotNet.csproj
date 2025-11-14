@@ -35,6 +35,7 @@
 	</ItemGroup>
 
 	<Target Name="EnsureClientUpdated" BeforeTargets="CoreCompile;CompileDesignTime">
+		<Exec Command="dotnet tool restore" />
 		<CallTarget Targets="GenerateClient" Condition="!Exists('$(GeneratedClientLog)')"/>
 		<CallTarget Targets="UpdateClient" Condition="Exists('$(GeneratedClientLog)')"/>
 	</Target>
