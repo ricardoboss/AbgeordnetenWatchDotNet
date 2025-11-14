@@ -5,7 +5,7 @@
 	</PropertyGroup>
 
 	<Target Name="InstallYarnPackages">
-		<Exec Command="yarn install --immutable --immutable-cache --check-cache"/>
+		<Exec Command="yarn install --immutable --check-cache"/>
 	</Target>
 
 	<Target Name="CoreCompile" DependsOnTargets="InstallYarnPackages">
