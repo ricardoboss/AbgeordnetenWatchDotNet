@@ -19,6 +19,7 @@
 		<GeneratedClientClassName>AbgeordnetenWatchApiClient</GeneratedClientClassName>
 		<GeneratedClientNamespace>$(RootNamespace).Generated</GeneratedClientNamespace>
 		<GeneratedClientLockFile>$(GeneratedClientDirectory)kiota-lock.json</GeneratedClientLockFile>
+		<GeneratedClientLog>$(GeneratedClientDirectory).kiota.log</GeneratedClientLog>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -34,11 +35,11 @@
 	</ItemGroup>
 
 	<Target Name="EnsureClientUpdated" BeforeTargets="CoreCompile;CompileDesignTime">
-		<CallTarget Targets="GenerateClient" Condition="!Exists('$(GeneratedClientLockFile)')"/>
-		<CallTarget Targets="UpdateClient" Condition="Exists('$(GeneratedClientLockFile)')"/>
+		<CallTarget Targets="GenerateClient" Condition="!Exists('$(GeneratedClientLog)')"/>
+		<CallTarget Targets="UpdateClient" Condition="Exists('$(GeneratedClientLog)')"/>
 	</Target>
 
-	<Target Name="GenerateClient" Condition="!Exists('$(GeneratedClientLockFile)')">
+	<Target Name="GenerateClient" Condition="!Exists('$(GeneratedClientLog)')">
 		<Exec
 			Command="dotnet kiota generate --openapi $(GeneratedClientSpecFile) --language CSharp --output $(GeneratedClientDirectory) --namespace-name $(GeneratedClientNamespace) --class-name $(GeneratedClientClassName) --exclude-backward-compatible --serializer Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory --deserializer Microsoft.Kiota.Serialization.Json.JsonParseNodeFactory --structured-mime-types application/json"
 			WorkingDirectory="$(MSBuildThisFileDirectory)"
@@ -50,7 +51,7 @@
 		</ItemGroup>
 	</Target>
 
-	<Target Name="UpdateClient" Condition="Exists('$(GeneratedClientLockFile)')">
+	<Target Name="UpdateClient" Condition="Exists('$(GeneratedClientLog)')">
 		<Exec
 			Command="dotnet kiota update --output $(GeneratedClientDirectory) --clean-output"
 			WorkingDirectory="$(MSBuildThisFileDirectory)"
