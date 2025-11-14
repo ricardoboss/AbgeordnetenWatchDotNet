@@ -8,7 +8,7 @@ namespace AbgeordnetenWatch;
 
 model CurrentProjectReferenceQueryOptions {
 	@query("current_project")
-	currentProject?: uint32;
+	currentProject?: integer; // uint32;
 
 	@query("current_project[entity.type]")
 	currentProjectType?: ParliamentPeriodType;
@@ -60,8 +60,8 @@ model CurrentProjectReferenceQueryOptions {
 
 	// TODO: nested references
 	@query("current_project[entity.parliament]")
-	currentProjectParliament?: uint32;
+	currentProjectParliament?: integer; // uint32;
 
 	@query("current_project[entity.previous_period]")
-	currentProjectPreviousPeriod?: uint32;
+	currentProjectPreviousPeriod?: integer; // uint32;
 }

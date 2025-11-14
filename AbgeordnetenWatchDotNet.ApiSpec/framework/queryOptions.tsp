@@ -6,22 +6,22 @@ namespace AbgeordnetenWatch;
 
 model IdQueryOptions {
 	@query
-	id?: uint32;
+	id?: integer; // uint32;
 
 	@query("id[gt]")
-	idGreaterThan?: uint32;
+	idGreaterThan?: integer; // uint32;
 
 	@query("id[gte]")
-	idGreaterThanOrEqual?: uint32;
+	idGreaterThanOrEqual?: integer; // uint32;
 
 	@query("id[lt]")
-	idLessThan?: uint32;
+	idLessThan?: integer; // uint32;
 
 	@query("id[lte]")
-	idLessThanOrEqual?: uint32;
+	idLessThanOrEqual?: integer; // uint32;
 
 	@query("id[ne]")
-	idNotEqual?: uint32;
+	idNotEqual?: integer; // uint32;
 
 	@query("id[in]")
 	idIn?: string;
@@ -32,22 +32,22 @@ model IdQueryOptions {
 
 model NumberQueryOptions {
 	@query
-	number?: uint32;
+	number?: integer; // uint32;
 
 	@query("number[gt]")
-	numberGreaterThan?: uint32;
+	numberGreaterThan?: integer; // uint32;
 
 	@query("number[gte]")
-	numberGreaterThanOrEqual?: uint32;
+	numberGreaterThanOrEqual?: integer; // uint32;
 
 	@query("number[lt]")
-	numberLessThan?: uint32;
+	numberLessThan?: integer; // uint32;
 
 	@query("number[lte]")
-	numberLessThanOrEqual?: uint32;
+	numberLessThanOrEqual?: integer; // uint32;
 
 	@query("number[ne]")
-	numberNotEqual?: uint32;
+	numberNotEqual?: integer; // uint32;
 
 	@query("number[in]")
 	numberIn?: string;
@@ -118,18 +118,18 @@ model NameQueryOptions {
 
 model PaginationQueryOptions {
 	@query
-	range_start?: uint32;
+	range_start?: integer; // uint32;
 
 	@query
 	@maxValue(1000)
-	range_end?: uint32;
+	range_end?: integer; // uint32;
 
 	@query
-	page?: uint32;
+	page?: integer; // uint32;
 
 	@query
 	@maxValue(1000)
-	pager_limit?: uint32;
+	pager_limit?: integer; // uint32;
 }
 
 model EntityListQueryOptions {

@@ -8,7 +8,7 @@ namespace AbgeordnetenWatch;
 
 model ParliamentPeriodReferenceQueryOptions {
 	@query("parliament_period")
-	parliamentPeriod?: uint32;
+	parliamentPeriod?: integer; // uint32;
 
 	@query("parliament_period[entity.type]")
 	parliamentPeriodType?: ParliamentPeriodType;
@@ -60,8 +60,8 @@ model ParliamentPeriodReferenceQueryOptions {
 
 	// TODO: nested references
 	@query("parliament_period[entity.parliament]")
-	parliamentPeriodParliament?: uint32;
+	parliamentPeriodParliament?: integer; // uint32;
 
 	@query("parliament_period[entity.previous_period]")
-	parliamentPeriodPreviousPeriod?: uint32;
+	parliamentPeriodPreviousPeriod?: integer; // uint32;
 }
