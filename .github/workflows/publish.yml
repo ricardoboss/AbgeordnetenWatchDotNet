@@ -18,14 +18,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+      - name: Enable Corepack
+        run: corepack enable
       - name: Setup node
         uses: actions/setup-node@v6
         with:
           node-version: latest
           cache: 'yarn'
           cache-dependency-path: AbgeordnetenWatchDotNet.ApiSpec/yarn.lock
-      - name: Enable Corepack
-        run: corepack enable
       - name: Prepare yarn
         run: corepack prepare $(node -p "require('./AbgeordnetenWatchDotNet.ApiSpec/package.json').packageManager") --activate
       - name: Setup .NET
