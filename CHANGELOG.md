@@ -1,3 +1,7 @@
+# 1.0.1
+
+* No changes (just a version bump)
+
 # 1.0.0
 
 * Initial release
