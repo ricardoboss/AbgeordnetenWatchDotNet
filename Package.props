@@ -2,7 +2,7 @@
 
 	<!-- NuGet package properties -->
 	<PropertyGroup>
-		<PackageVersion>1.0.0</PackageVersion>
+		<PackageVersion>1.0.1</PackageVersion>
 		<Description>An API client for the abgeordnetenwatch.de website.</Description>
 		<PackageTags>AbgeordnetenWatch;API;kiota</PackageTags>
 
