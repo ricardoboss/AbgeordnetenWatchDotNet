@@ -18,10 +18,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+      - name: Enable Corepack
+        run: corepack enable
       - name: Setup node
         uses: actions/setup-node@v6
         with:
           node-version-file: AbgeordnetenWatchDotNet.ApiSpec/package.json
+          cache: 'yarn'
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
       - name: Build
