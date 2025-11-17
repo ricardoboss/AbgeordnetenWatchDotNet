@@ -10,9 +10,7 @@ namespace AbgeordnetenWatch.ElectoralLists;
 
 model AllQueryOptions {
 	...EntityListQueryOptions;
-
-	@query
-	name?: string;
+	...NameQueryOptions;
 }
 
 alias Endpoints = EntityEndpoint<ElectoralList>;

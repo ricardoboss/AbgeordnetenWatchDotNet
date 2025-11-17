@@ -10,12 +10,7 @@ namespace AbgeordnetenWatch.Fractions;
 
 model AllQueryOptions {
 	...EntityListQueryOptions;
-
-	@query
-	full_name?: string;
-
-	@query
-	short_name?: string;
+	...FullNameShortNameQueryOptions;
 }
 
 alias Endpoints = EntityEndpoint<Fraction>;

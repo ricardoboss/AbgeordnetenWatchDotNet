@@ -12,7 +12,22 @@ model AllQueryOptions {
 	...EntityListQueryOptions;
 
 	@query
-	committee_role?: string;
+	committee_role?: CommitteeRole;
+
+	@query("committee_role[sw]")
+	committee_roleStartsWith?: string;
+
+	@query("committee_role[cn]")
+	committee_roleContains?: string;
+
+	@query("committee_role[ew]")
+	committee_roleEndsWith?: string;
+
+	@query("committee_role[in]")
+	committee_roleIn?: string;
+
+	@query("committee_role[notin]")
+	committee_roleNotIn?: string;
 }
 
 alias Endpoints = EntityEndpoint<CommitteeMembership>;

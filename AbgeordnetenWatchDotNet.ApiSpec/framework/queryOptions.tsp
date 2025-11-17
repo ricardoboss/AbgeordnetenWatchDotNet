@@ -132,6 +132,76 @@ model PaginationQueryOptions {
 	pager_limit?: integer; // uint32;
 }
 
+model StartEndDateQueryOptions {
+	@query
+	start_date?: plainDate;
+
+	@query("start_date[gt]")
+	start_dateGreaterThan?: plainDate;
+
+	@query("start_date[gte]")
+	start_dateGreaterThanOrEqual?: plainDate;
+
+	@query("start_date[lt]")
+	start_dateLessThan?: plainDate;
+
+	@query("start_date[lte]")
+	start_dateLessThanOrEqual?: plainDate;
+
+	@query
+	end_date?: plainDate;
+
+	@query("end_date[gt]")
+	end_dateGreaterThan?: plainDate;
+
+	@query("end_date[gte]")
+	end_dateGreaterThanOrEqual?: plainDate;
+
+	@query("end_date[lt]")
+	end_dateLessThan?: plainDate;
+
+	@query("end_date[lte]")
+	end_dateLessThanOrEqual?: plainDate;
+}
+
+model FullNameShortNameQueryOptions {
+	@query
+	full_name?: string;
+
+	@query("full_name[sw]")
+	full_nameStartsWith?: string;
+
+	@query("full_name[cn]")
+	full_nameContains?: string;
+
+	@query("full_name[ew]")
+	full_nameEndsWith?: string;
+
+	@query("full_name[in]")
+	full_nameIn?: string;
+
+	@query("full_name[notin]")
+	full_nameNotIn?: string;
+
+	@query
+	short_name?: string;
+
+	@query("short_name[sw]")
+	short_nameStartsWith?: string;
+
+	@query("short_name[cn]")
+	short_nameContains?: string;
+
+	@query("short_name[ew]")
+	short_nameEndsWith?: string;
+
+	@query("short_name[in]")
+	short_nameIn?: string;
+
+	@query("short_name[notin]")
+	short_nameNotIn?: string;
+}
+
 model EntityListQueryOptions {
 	...IdQueryOptions;
 	...LabelQueryOptions;
