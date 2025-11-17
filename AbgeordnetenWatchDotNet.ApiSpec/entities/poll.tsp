@@ -29,4 +29,11 @@ model Poll extends RegularEntity {
 
 	@encodedName("application/json", "field_topics")
 	fieldTopics: Reference<Topic>[];
+
+	@encodedName("application/json", "related_data")
+	relatedData?: PollsRelatedData;
+}
+
+model PollsRelatedData {
+	votes?: Vote[];
 }
