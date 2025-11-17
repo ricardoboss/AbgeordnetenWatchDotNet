@@ -5,8 +5,13 @@ using Microsoft.Kiota.Abstractions;
 namespace AbgeordnetenWatchDotNet.QueryBuilder;
 
 [PublicAPI]
-public class PollsAcceptedQueryBuilder(RequestConfiguration<PollsRequestBuilder.PollsRequestBuilderGetQueryParameters> requestConfiguration) : BaseQueryBuilder<PollsRequestBuilder.PollsRequestBuilderGetQueryParameters>(requestConfiguration)
+public class PollsAcceptedQueryBuilder(
+	RequestConfiguration<PollsRequestBuilder.PollsRequestBuilderGetQueryParameters> requestConfiguration)
+	: BaseQueryBuilder<PollsRequestBuilder.PollsRequestBuilderGetQueryParameters>(requestConfiguration)
 {
+	private readonly RequestConfiguration<PollsRequestBuilder.PollsRequestBuilderGetQueryParameters>
+		requestConfiguration = requestConfiguration;
+
 	public PollsAcceptedQueryBuilder OnlyDenied()
 	{
 		requestConfiguration.QueryParameters.FieldAccepted = 0;
@@ -32,7 +37,8 @@ public class PollsAcceptedQueryBuilder(RequestConfiguration<PollsRequestBuilder.
 [PublicAPI]
 public static class PollsAcceptedQueryBuilderExtensions
 {
-	public static PollsAcceptedQueryBuilder PollOutcome(
-		this RequestConfiguration<PollsRequestBuilder.PollsRequestBuilderGetQueryParameters> requestConfiguration) =>
-		new(requestConfiguration);
+	extension(RequestConfiguration<PollsRequestBuilder.PollsRequestBuilderGetQueryParameters> requestConfiguration)
+	{
+		public PollsAcceptedQueryBuilder PollOutcome => new(requestConfiguration);
+	}
 }

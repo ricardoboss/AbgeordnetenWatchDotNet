@@ -50,6 +50,8 @@ public class PaginationQueryBuilder<T>(RequestConfiguration<T> requestConfigurat
 [PublicAPI]
 public static class PaginationQueryBuilderExtensions
 {
-	public static PaginationQueryBuilder<T> Pagination<T>(this RequestConfiguration<T> requestConfiguration)
-		where T : class, IPaginationQueryOptions, new() => new(requestConfiguration);
+	extension<T>(RequestConfiguration<T> requestConfiguration) where T : class, IPaginationQueryOptions, new()
+	{
+		public PaginationQueryBuilder<T> Pagination => new(requestConfiguration);
+	}
 }

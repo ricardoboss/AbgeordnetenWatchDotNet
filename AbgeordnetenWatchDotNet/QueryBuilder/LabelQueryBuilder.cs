@@ -55,6 +55,8 @@ public class LabelQueryBuilder<T>(RequestConfiguration<T> requestConfiguration) 
 [PublicAPI]
 public static class LabelQueryBuilderExtensions
 {
-	public static LabelQueryBuilder<T> Label<T>(this RequestConfiguration<T> requestConfiguration)
-		where T : class, ILabelQueryOptions, new() => new(requestConfiguration);
+	extension<T>(RequestConfiguration<T> requestConfiguration) where T : class, ILabelQueryOptions, new()
+	{
+		public LabelQueryBuilder<T> Label => new(requestConfiguration);
+	}
 }

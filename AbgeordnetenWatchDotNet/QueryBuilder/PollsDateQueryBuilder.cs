@@ -9,7 +9,8 @@ public class PollsDateQueryBuilder(
 	RequestConfiguration<PollsRequestBuilder.PollsRequestBuilderGetQueryParameters> requestConfiguration)
 	: BaseQueryBuilder<PollsRequestBuilder.PollsRequestBuilderGetQueryParameters>(requestConfiguration)
 {
-	private readonly RequestConfiguration<PollsRequestBuilder.PollsRequestBuilderGetQueryParameters> requestConfiguration = requestConfiguration;
+	private readonly RequestConfiguration<PollsRequestBuilder.PollsRequestBuilderGetQueryParameters>
+		requestConfiguration = requestConfiguration;
 
 	public PollsDateQueryBuilder Exactly(DateOnly date)
 	{
@@ -50,7 +51,8 @@ public class PollsDateQueryBuilder(
 [PublicAPI]
 public static class PollsDateQueryBuilderExtensions
 {
-	public static PollsDateQueryBuilder PollDate(
-		this RequestConfiguration<PollsRequestBuilder.PollsRequestBuilderGetQueryParameters> requestConfiguration) =>
-		new(requestConfiguration);
+	extension(RequestConfiguration<PollsRequestBuilder.PollsRequestBuilderGetQueryParameters> requestConfiguration)
+	{
+		public PollsDateQueryBuilder PollDate => new(requestConfiguration);
+	}
 }

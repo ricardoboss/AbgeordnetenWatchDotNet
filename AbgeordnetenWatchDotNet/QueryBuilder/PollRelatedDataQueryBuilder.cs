@@ -23,7 +23,9 @@ public class PollRelatedDataQueryBuilder(
 [PublicAPI]
 public static class PollRelatedDataQueryBuilderExtensions
 {
-	public static PollRelatedDataQueryBuilder RelatedData(
-		this RequestConfiguration<PollsItemRequestBuilder.PollsItemRequestBuilderGetQueryParameters>
-			requestConfiguration) => new(requestConfiguration);
+	extension(RequestConfiguration<PollsItemRequestBuilder.PollsItemRequestBuilderGetQueryParameters>
+		requestConfiguration)
+	{
+		public PollRelatedDataQueryBuilder RelatedData => new(requestConfiguration);
+	}
 }
