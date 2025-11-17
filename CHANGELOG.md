@@ -1,3 +1,7 @@
+# Unreleased
+
+* Added more query filters in the spec (which you can now filter for)
+
 # 1.0.1
 
 * No changes (just a version bump)
