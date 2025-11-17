@@ -1,5 +1,8 @@
-﻿namespace AbgeordnetenWatchDotNet.QueryBuilder;
+﻿using JetBrains.Annotations;
 
+namespace AbgeordnetenWatchDotNet.QueryBuilder;
+
+[PublicAPI]
 public interface IPaginationQueryOptions
 {
 	public int? RangeStart { get; set; }

@@ -1,10 +1,15 @@
 ﻿using AbgeordnetenWatchDotNet.Generated.Models;
+using JetBrains.Annotations;
 using Microsoft.Kiota.Abstractions;
 
 namespace AbgeordnetenWatchDotNet.QueryBuilder;
 
-public class PaginationQueryBuilder<T>(RequestConfiguration<T> requestConfiguration) where T : class, IPaginationQueryOptions, new()
+[PublicAPI]
+public class PaginationQueryBuilder<T>(RequestConfiguration<T> requestConfiguration)
+	: BaseQueryBuilder<T>(requestConfiguration) where T : class, IPaginationQueryOptions, new()
 {
+	private readonly RequestConfiguration<T> requestConfiguration = requestConfiguration;
+
 	public PaginationQueryBuilder<T> StartingAt(int value)
 	{
 		requestConfiguration.QueryParameters.RangeStart = value;
@@ -12,28 +17,26 @@ public class PaginationQueryBuilder<T>(RequestConfiguration<T> requestConfigurat
 		return this;
 	}
 
-	public PaginationQueryBuilder<T> PageSize(int value)
+	public PaginationQueryBuilder<T> EndingAt(int value)
 	{
 		requestConfiguration.QueryParameters.RangeEnd = value;
 
 		return this;
 	}
 
-	public PaginationQueryBuilder<T> Page(int value)
+	public PaginationQueryBuilder<T> WithPage(int value)
 	{
 		requestConfiguration.QueryParameters.Page = value;
 
 		return this;
 	}
 
-	public PaginationQueryBuilder<T> PagerLimit(int value)
+	public PaginationQueryBuilder<T> WithPageSize(int value)
 	{
 		requestConfiguration.QueryParameters.PagerLimit = value;
 
 		return this;
 	}
-
-	public RequestConfiguration<T> And() => requestConfiguration;
 
 	public PaginationQueryBuilder<T> ContinuedFrom(ResultMeta meta)
 	{
@@ -44,6 +47,7 @@ public class PaginationQueryBuilder<T>(RequestConfiguration<T> requestConfigurat
 	}
 }
 
+[PublicAPI]
 public static class PaginationQueryBuilderExtensions
 {
 	public static PaginationQueryBuilder<T> Pagination<T>(this RequestConfiguration<T> requestConfiguration)

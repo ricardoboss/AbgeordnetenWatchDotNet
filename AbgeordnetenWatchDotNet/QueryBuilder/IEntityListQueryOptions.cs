@@ -1,3 +1,3 @@
 ﻿namespace AbgeordnetenWatchDotNet.QueryBuilder;
 
-public interface IEntityListQueryOptions : IIdQueryOptions, IPaginationQueryOptions;
+public interface IEntityListQueryOptions : IIdQueryOptions, IPaginationQueryOptions, ILabelQueryOptions;

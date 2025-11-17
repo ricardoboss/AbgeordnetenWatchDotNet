@@ -1,5 +1,8 @@
-﻿namespace AbgeordnetenWatchDotNet.QueryBuilder;
+﻿using JetBrains.Annotations;
 
+namespace AbgeordnetenWatchDotNet.QueryBuilder;
+
+[PublicAPI]
 public interface IIdQueryOptions
 {
 	public int? Id { get; set; }

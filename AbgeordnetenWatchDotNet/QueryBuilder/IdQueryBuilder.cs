@@ -4,8 +4,11 @@ using Microsoft.Kiota.Abstractions;
 namespace AbgeordnetenWatchDotNet.QueryBuilder;
 
 [PublicAPI]
-public class IdQueryBuilder<T>(RequestConfiguration<T> requestConfiguration) where T : class, IIdQueryOptions, new()
+public class IdQueryBuilder<T>(RequestConfiguration<T> requestConfiguration)
+	: BaseQueryBuilder<T>(requestConfiguration) where T : class, IIdQueryOptions, new()
 {
+	private readonly RequestConfiguration<T> requestConfiguration = requestConfiguration;
+
 	public IdQueryBuilder<T> Between(int? min, int? max)
 	{
 		if (min is not null)
@@ -61,21 +64,20 @@ public class IdQueryBuilder<T>(RequestConfiguration<T> requestConfiguration) whe
 
 	public IdQueryBuilder<T> In(params int[] values)
 	{
-		requestConfiguration.QueryParameters.Idin = $"[{string.Join(",", values)}]";
+		requestConfiguration.QueryParameters.Idin = FormatInListQueryValue(values);
 
 		return this;
 	}
 
 	public IdQueryBuilder<T> NotIn(params int[] values)
 	{
-		requestConfiguration.QueryParameters.Idnotin = $"[{string.Join(",", values)}]";
+		requestConfiguration.QueryParameters.Idnotin = FormatInListQueryValue(values);
 
 		return this;
 	}
-
-	public RequestConfiguration<T> And() => requestConfiguration;
 }
 
+[PublicAPI]
 public static class IdQueryBuilderExtensions
 {
 	public static IdQueryBuilder<T> Id<T>(this RequestConfiguration<T> requestConfiguration)
