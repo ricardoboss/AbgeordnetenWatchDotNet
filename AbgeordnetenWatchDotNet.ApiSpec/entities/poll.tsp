@@ -7,6 +7,8 @@ import "../framework/reference.tsp";
 namespace AbgeordnetenWatch;
 
 model Poll extends RegularEntity {
+	entity_type: "poll";
+
 	@encodedName("application/json", "field_committees")
 	fieldCommittees: Reference<Committee>;
 

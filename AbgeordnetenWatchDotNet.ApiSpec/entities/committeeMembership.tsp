@@ -7,6 +7,8 @@ import "../framework/reference.tsp";
 namespace AbgeordnetenWatch;
 
 model CommitteeMembership extends RegularEntity {
+	entity_type: "committee_membership";
+
 	committee: Reference<Committee>;
 
 	@encodedName("application/json", "candidacy_mandate")

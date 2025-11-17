@@ -7,6 +7,8 @@ import "../framework/reference.tsp";
 namespace AbgeordnetenWatch;
 
 model SidejobOrganization extends Entity {
+	entity_type: "side_job_organization";
+
 	@encodedName("application/json", "field_city")
 	fieldCity: SubReference<City>;
 

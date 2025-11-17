@@ -6,6 +6,8 @@ import "../framework/reference.tsp";
 namespace AbgeordnetenWatch;
 
 model ElectionProgram extends Entity {
+	entity_type: "election_program";
+
 	@encodedName("application/json", "parliament_period")
 	parliamentPeriod: Reference<ParliamentPeriod>;
 

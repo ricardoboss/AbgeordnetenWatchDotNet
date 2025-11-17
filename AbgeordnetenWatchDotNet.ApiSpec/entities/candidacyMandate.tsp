@@ -11,6 +11,8 @@ namespace AbgeordnetenWatch;
 alias CandidacyMandateType = "candidacy" | "mandate";
 
 model CandidacyMandate extends Entity {
+	entity_type: "candidacy_mandate";
+
 	@encodedName("application/json", "id_external_administration")
 	idExternalAdministration: string;
 

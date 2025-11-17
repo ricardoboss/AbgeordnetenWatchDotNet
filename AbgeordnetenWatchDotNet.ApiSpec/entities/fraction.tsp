@@ -5,6 +5,8 @@ import "../framework/reference.tsp";
 namespace AbgeordnetenWatch;
 
 model Fraction extends RegularEntity {
+	entity_type: "fraction";
+
 	@encodedName("application/json", "full_name")
 	fullName: string;
 

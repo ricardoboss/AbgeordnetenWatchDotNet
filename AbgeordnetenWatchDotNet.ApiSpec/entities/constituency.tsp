@@ -5,6 +5,8 @@ import "../framework/reference.tsp";
 namespace AbgeordnetenWatch;
 
 model Constituency extends RegularEntity {
+	entity_type: "constituency";
+
 	name: string;
 
 	number: integer;

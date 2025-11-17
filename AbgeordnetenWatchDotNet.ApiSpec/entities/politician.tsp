@@ -5,6 +5,8 @@ import "../framework/reference.tsp";
 namespace AbgeordnetenWatch;
 
 model Politician extends RegularEntity {
+	entity_type: "politician";
+
 	@encodedName("application/json", "first_name")
 	firstName: string;
 

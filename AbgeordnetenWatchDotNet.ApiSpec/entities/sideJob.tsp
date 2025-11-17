@@ -9,6 +9,8 @@ import "../framework/reference.tsp";
 namespace AbgeordnetenWatch;
 
 model Sidejob extends Entity {
+	entity_type: "side_job";
+
 	@encodedName("application/json", "job_title_extra")
 	jobTitleExtra: string;
 

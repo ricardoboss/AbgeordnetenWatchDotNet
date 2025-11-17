@@ -7,9 +7,14 @@ import "../framework/reference.tsp";
 namespace AbgeordnetenWatch;
 
 model Vote extends Entity {
+	entity_type: "vote";
+
 	mandate: SubReference<CandidacyMandate>;
+
 	fraction: Reference<Fraction>;
+
 	poll: Reference<Poll>;
+
 	vote: VoteResult;
 
 	@encodedName("application/json", "reason_no_show")

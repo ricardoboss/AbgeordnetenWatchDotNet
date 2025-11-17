@@ -1,13 +1,13 @@
 namespace AbgeordnetenWatch;
 
+@discriminator("entity_type")
 model Entity {
   @summary("Die eindeutige Id der Entität")
   @key
   id: integer;
 
   @summary("Die eindeutige Id des Entitätstyps")
-  @encodedName("application/json", "entity_type")
-  entityType: string;
+  entity_type: string;
 
   @summary("Das Label / die Bezeichnung der Entität")
   label: string;

@@ -6,6 +6,8 @@ import "../framework/reference.tsp";
 namespace AbgeordnetenWatch;
 
 model Committee extends RegularEntity {
+	entity_type: "committee";
+
 	@encodedName("application/json", "field_legislature")
 	fieldLegislature: Reference<ParliamentPeriod>;
 
