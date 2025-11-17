@@ -1,0 +1,3 @@
+﻿[{*RequestBuilder.cs,*GetResponse.cs}]
+# the C# files in this dir augment classes in other files, hence their namespace will never be correct
+resharper_check_namespace_highlighting=none
