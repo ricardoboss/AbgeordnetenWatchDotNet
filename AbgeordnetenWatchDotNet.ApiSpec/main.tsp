@@ -23,10 +23,10 @@ using TypeSpec.Http;
 
 @service
 @server("https://www.abgeordnetenwatch.de/api/v2/")
-@info({
+@info(#{
 	title: "AbgeordnetenWatch API",
 	version: "2.7",
-	license: {
+	license: #{
 		name: "CC0 1.0",
 		url: "https://creativecommons.org/publicdomain/zero/1.0/deed.de",
 	},
