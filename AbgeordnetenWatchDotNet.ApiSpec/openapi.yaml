@@ -1,0 +1,4552 @@
+openapi: 3.0.0
+info:
+  title: AbgeordnetenWatch API
+  version: '2.7'
+  license:
+    name: CC0 1.0
+    url: https://creativecommons.org/publicdomain/zero/1.0/deed.de
+externalDocs:
+  url: https://www.abgeordnetenwatch.de/api
+tags: []
+paths:
+  /candidacies-mandates:
+    get:
+      operationId: CandidaciesMandates_all
+      parameters:
+        - $ref: '#/components/parameters/IdQueryOptions.id'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idIn'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.label'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelStartsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelContains'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelEndsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelNotIn'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_start'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_end'
+        - $ref: '#/components/parameters/PaginationQueryOptions.page'
+        - $ref: '#/components/parameters/PaginationQueryOptions.pager_limit'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriod'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodType'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodElectionDate'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodElectionDateGreaterThan'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodElectionDateGreaterThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodElectionDateLessThan'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodElectionDateLessThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodStartDatePeriod'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodStartDatePeriodGreaterThan'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodStartDatePeriodGreaterThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodStartDatePeriodLessThan'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodStartDatePeriodLessThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodEndDatePeriod'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodEndDatePeriodGreaterThan'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodEndDatePeriodGreaterThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodEndDatePeriodLessThan'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodEndDatePeriodLessThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodParliament'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodPreviousPeriod'
+        - $ref: '#/components/parameters/ElectoralDataReferenceQueryOptions.electoralDataListPosition'
+        - $ref: '#/components/parameters/ElectoralDataReferenceQueryOptions.electoralDataConstituency'
+        - $ref: '#/components/parameters/StartEndDateQueryOptions.start_date'
+        - $ref: '#/components/parameters/StartEndDateQueryOptions.start_dateGreaterThan'
+        - $ref: '#/components/parameters/StartEndDateQueryOptions.start_dateGreaterThanOrEqual'
+        - $ref: '#/components/parameters/StartEndDateQueryOptions.start_dateLessThan'
+        - $ref: '#/components/parameters/StartEndDateQueryOptions.start_dateLessThanOrEqual'
+        - $ref: '#/components/parameters/StartEndDateQueryOptions.end_date'
+        - $ref: '#/components/parameters/StartEndDateQueryOptions.end_dateGreaterThan'
+        - $ref: '#/components/parameters/StartEndDateQueryOptions.end_dateGreaterThanOrEqual'
+        - $ref: '#/components/parameters/StartEndDateQueryOptions.end_dateLessThan'
+        - $ref: '#/components/parameters/StartEndDateQueryOptions.end_dateLessThanOrEqual'
+        - $ref: '#/components/parameters/CandidaciesMandates.AllQueryOptions.id_external_administration'
+        - $ref: '#/components/parameters/CandidaciesMandates.AllQueryOptions.id_external_administration_description'
+        - $ref: '#/components/parameters/CandidaciesMandates.AllQueryOptions.type'
+        - $ref: '#/components/parameters/CandidaciesMandates.AllQueryOptions.info'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CandidacyMandate'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /candidacies-mandates/{id}:
+    get:
+      operationId: CandidaciesMandates_single
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/CandidacyMandate'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /cities:
+    get:
+      operationId: Cities_all
+      parameters:
+        - $ref: '#/components/parameters/IdQueryOptions.id'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idIn'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.label'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelStartsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelContains'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelEndsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelNotIn'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_start'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_end'
+        - $ref: '#/components/parameters/PaginationQueryOptions.page'
+        - $ref: '#/components/parameters/PaginationQueryOptions.pager_limit'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/City'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /cities/{id}:
+    get:
+      operationId: Cities_single
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/City'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /committee-memberships:
+    get:
+      operationId: CommitteeMemberships_all
+      parameters:
+        - $ref: '#/components/parameters/IdQueryOptions.id'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idIn'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.label'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelStartsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelContains'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelEndsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelNotIn'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_start'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_end'
+        - $ref: '#/components/parameters/PaginationQueryOptions.page'
+        - $ref: '#/components/parameters/PaginationQueryOptions.pager_limit'
+        - $ref: '#/components/parameters/CommitteeMemberships.AllQueryOptions.committee_role'
+        - $ref: '#/components/parameters/CommitteeMemberships.AllQueryOptions.committee_roleStartsWith'
+        - $ref: '#/components/parameters/CommitteeMemberships.AllQueryOptions.committee_roleContains'
+        - $ref: '#/components/parameters/CommitteeMemberships.AllQueryOptions.committee_roleEndsWith'
+        - $ref: '#/components/parameters/CommitteeMemberships.AllQueryOptions.committee_roleIn'
+        - $ref: '#/components/parameters/CommitteeMemberships.AllQueryOptions.committee_roleNotIn'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CommitteeMembership'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /committee-memberships/{id}:
+    get:
+      operationId: CommitteeMemberships_single
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/CommitteeMembership'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /committees:
+    get:
+      operationId: Committees_all
+      parameters:
+        - $ref: '#/components/parameters/IdQueryOptions.id'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idIn'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.label'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelStartsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelContains'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelEndsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelNotIn'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_start'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_end'
+        - $ref: '#/components/parameters/PaginationQueryOptions.page'
+        - $ref: '#/components/parameters/PaginationQueryOptions.pager_limit'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Committee'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /committees/{id}:
+    get:
+      operationId: Committees_single
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/Committee'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /constituencies:
+    get:
+      operationId: Constituencies_all
+      parameters:
+        - $ref: '#/components/parameters/IdQueryOptions.id'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idIn'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.label'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelStartsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelContains'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelEndsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelNotIn'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_start'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_end'
+        - $ref: '#/components/parameters/PaginationQueryOptions.page'
+        - $ref: '#/components/parameters/PaginationQueryOptions.pager_limit'
+        - $ref: '#/components/parameters/NameQueryOptions.name'
+        - $ref: '#/components/parameters/NameQueryOptions.nameStartsWith'
+        - $ref: '#/components/parameters/NameQueryOptions.nameContains'
+        - $ref: '#/components/parameters/NameQueryOptions.nameEndsWith'
+        - $ref: '#/components/parameters/NameQueryOptions.nameIn'
+        - $ref: '#/components/parameters/NameQueryOptions.nameNotIn'
+        - $ref: '#/components/parameters/NumberQueryOptions.number'
+        - $ref: '#/components/parameters/NumberQueryOptions.numberGreaterThan'
+        - $ref: '#/components/parameters/NumberQueryOptions.numberGreaterThanOrEqual'
+        - $ref: '#/components/parameters/NumberQueryOptions.numberLessThan'
+        - $ref: '#/components/parameters/NumberQueryOptions.numberLessThanOrEqual'
+        - $ref: '#/components/parameters/NumberQueryOptions.numberNotEqual'
+        - $ref: '#/components/parameters/NumberQueryOptions.numberIn'
+        - $ref: '#/components/parameters/NumberQueryOptions.numberNotIn'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriod'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodType'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodElectionDate'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodElectionDateGreaterThan'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodElectionDateGreaterThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodElectionDateLessThan'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodElectionDateLessThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodStartDatePeriod'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodStartDatePeriodGreaterThan'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodStartDatePeriodGreaterThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodStartDatePeriodLessThan'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodStartDatePeriodLessThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodEndDatePeriod'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodEndDatePeriodGreaterThan'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodEndDatePeriodGreaterThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodEndDatePeriodLessThan'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodEndDatePeriodLessThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodParliament'
+        - $ref: '#/components/parameters/ParliamentPeriodReferenceQueryOptions.parliamentPeriodPreviousPeriod'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Constituency'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /constituencies/{id}:
+    get:
+      operationId: Constituencies_single
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/Constituency'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /countries:
+    get:
+      operationId: Countries_all
+      parameters:
+        - $ref: '#/components/parameters/IdQueryOptions.id'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idIn'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.label'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelStartsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelContains'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelEndsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelNotIn'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_start'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_end'
+        - $ref: '#/components/parameters/PaginationQueryOptions.page'
+        - $ref: '#/components/parameters/PaginationQueryOptions.pager_limit'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Country'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /countries/{id}:
+    get:
+      operationId: Countries_single
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/Country'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /election-program:
+    get:
+      operationId: ElectionPrograms_all
+      parameters:
+        - $ref: '#/components/parameters/IdQueryOptions.id'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idIn'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.label'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelStartsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelContains'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelEndsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelNotIn'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_start'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_end'
+        - $ref: '#/components/parameters/PaginationQueryOptions.page'
+        - $ref: '#/components/parameters/PaginationQueryOptions.pager_limit'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ElectionProgram'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /election-program/{id}:
+    get:
+      operationId: ElectionPrograms_single
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/ElectionProgram'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /electoral-lists:
+    get:
+      operationId: ElectoralLists_all
+      parameters:
+        - $ref: '#/components/parameters/IdQueryOptions.id'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idIn'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.label'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelStartsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelContains'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelEndsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelNotIn'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_start'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_end'
+        - $ref: '#/components/parameters/PaginationQueryOptions.page'
+        - $ref: '#/components/parameters/PaginationQueryOptions.pager_limit'
+        - $ref: '#/components/parameters/NameQueryOptions.name'
+        - $ref: '#/components/parameters/NameQueryOptions.nameStartsWith'
+        - $ref: '#/components/parameters/NameQueryOptions.nameContains'
+        - $ref: '#/components/parameters/NameQueryOptions.nameEndsWith'
+        - $ref: '#/components/parameters/NameQueryOptions.nameIn'
+        - $ref: '#/components/parameters/NameQueryOptions.nameNotIn'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ElectoralList'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /electoral-lists/{id}:
+    get:
+      operationId: ElectoralLists_single
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/ElectoralList'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /fractions:
+    get:
+      operationId: Fractions_all
+      parameters:
+        - $ref: '#/components/parameters/IdQueryOptions.id'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idIn'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.label'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelStartsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelContains'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelEndsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelNotIn'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_start'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_end'
+        - $ref: '#/components/parameters/PaginationQueryOptions.page'
+        - $ref: '#/components/parameters/PaginationQueryOptions.pager_limit'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.full_name'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.full_nameStartsWith'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.full_nameContains'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.full_nameEndsWith'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.full_nameIn'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.full_nameNotIn'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.short_name'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.short_nameStartsWith'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.short_nameContains'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.short_nameEndsWith'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.short_nameIn'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.short_nameNotIn'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Fraction'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /fractions/{id}:
+    get:
+      operationId: Fractions_single
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/RelatedDataQueryOption'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/Fraction'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /parliament-periods:
+    get:
+      operationId: ParliamentPeriods_all
+      parameters:
+        - $ref: '#/components/parameters/IdQueryOptions.id'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idIn'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.label'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelStartsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelContains'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelEndsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelNotIn'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_start'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_end'
+        - $ref: '#/components/parameters/PaginationQueryOptions.page'
+        - $ref: '#/components/parameters/PaginationQueryOptions.pager_limit'
+        - $ref: '#/components/parameters/ParliamentPeriods.AllQueryOptions.type'
+        - $ref: '#/components/parameters/ParliamentPeriods.AllQueryOptions.election_date'
+        - $ref: '#/components/parameters/ParliamentPeriods.AllQueryOptions.election_dateGreaterThan'
+        - $ref: '#/components/parameters/ParliamentPeriods.AllQueryOptions.election_dateGreaterThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriods.AllQueryOptions.election_dateLessThan'
+        - $ref: '#/components/parameters/ParliamentPeriods.AllQueryOptions.election_dateLessThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriods.AllQueryOptions.start_date_period'
+        - $ref: '#/components/parameters/ParliamentPeriods.AllQueryOptions.start_date_periodGreaterThan'
+        - $ref: '#/components/parameters/ParliamentPeriods.AllQueryOptions.start_date_periodGreaterThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriods.AllQueryOptions.start_date_periodLessThan'
+        - $ref: '#/components/parameters/ParliamentPeriods.AllQueryOptions.start_date_periodLessThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriods.AllQueryOptions.end_date_period'
+        - $ref: '#/components/parameters/ParliamentPeriods.AllQueryOptions.end_date_periodGreaterThan'
+        - $ref: '#/components/parameters/ParliamentPeriods.AllQueryOptions.end_date_periodGreaterThanOrEqual'
+        - $ref: '#/components/parameters/ParliamentPeriods.AllQueryOptions.end_date_periodLessThan'
+        - $ref: '#/components/parameters/ParliamentPeriods.AllQueryOptions.end_date_periodLessThanOrEqual'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ParliamentPeriod'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /parliament-periods/{id}:
+    get:
+      operationId: ParliamentPeriods_single
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/ParliamentPeriod'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /parliaments:
+    get:
+      operationId: Parliaments_all
+      parameters:
+        - $ref: '#/components/parameters/IdQueryOptions.id'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idIn'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.label'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelStartsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelContains'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelEndsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelNotIn'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_start'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_end'
+        - $ref: '#/components/parameters/PaginationQueryOptions.page'
+        - $ref: '#/components/parameters/PaginationQueryOptions.pager_limit'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProject'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectType'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectElectionDate'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectElectionDateGreaterThan'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectElectionDateGreaterThanOrEqual'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectElectionDateLessThan'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectElectionDateLessThanOrEqual'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectStartDatePeriod'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectStartDatePeriodGreaterThan'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectStartDatePeriodGreaterThanOrEqual'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectStartDatePeriodLessThan'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectStartDatePeriodLessThanOrEqual'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectEndDatePeriod'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectEndDatePeriodGreaterThan'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectEndDatePeriodGreaterThanOrEqual'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectEndDatePeriodLessThan'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectEndDatePeriodLessThanOrEqual'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectParliament'
+        - $ref: '#/components/parameters/CurrentProjectReferenceQueryOptions.currentProjectPreviousPeriod'
+        - $ref: '#/components/parameters/Parliaments.AllQueryOptions.label_external_long'
+        - $ref: '#/components/parameters/Parliaments.AllQueryOptions.label_external_longStartsWith'
+        - $ref: '#/components/parameters/Parliaments.AllQueryOptions.label_external_longContains'
+        - $ref: '#/components/parameters/Parliaments.AllQueryOptions.label_external_longEndsWith'
+        - $ref: '#/components/parameters/Parliaments.AllQueryOptions.label_external_longIn'
+        - $ref: '#/components/parameters/Parliaments.AllQueryOptions.label_external_longNotIn'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Parliament'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /parliaments/{id}:
+    get:
+      operationId: Parliaments_single
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/RelatedDataQueryOption'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/Parliament'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /parties:
+    get:
+      operationId: Parties_all
+      parameters:
+        - $ref: '#/components/parameters/IdQueryOptions.id'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idIn'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.label'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelStartsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelContains'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelEndsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelNotIn'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_start'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_end'
+        - $ref: '#/components/parameters/PaginationQueryOptions.page'
+        - $ref: '#/components/parameters/PaginationQueryOptions.pager_limit'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.full_name'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.full_nameStartsWith'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.full_nameContains'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.full_nameEndsWith'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.full_nameIn'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.full_nameNotIn'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.short_name'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.short_nameStartsWith'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.short_nameContains'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.short_nameEndsWith'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.short_nameIn'
+        - $ref: '#/components/parameters/FullNameShortNameQueryOptions.short_nameNotIn'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Party'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /parties/{id}:
+    get:
+      operationId: Parties_single
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/RelatedDataQueryOption'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/Party'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /politicians:
+    get:
+      operationId: Politicians_all
+      parameters:
+        - $ref: '#/components/parameters/IdQueryOptions.id'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idIn'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.label'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelStartsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelContains'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelEndsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelNotIn'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_start'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_end'
+        - $ref: '#/components/parameters/PaginationQueryOptions.page'
+        - $ref: '#/components/parameters/PaginationQueryOptions.pager_limit'
+        - $ref: '#/components/parameters/Politicians.AllQueryOptions.first_name'
+        - $ref: '#/components/parameters/Politicians.AllQueryOptions.last_name'
+        - $ref: '#/components/parameters/Politicians.AllQueryOptions.birth_name'
+        - $ref: '#/components/parameters/Politicians.AllQueryOptions.sex'
+        - $ref: '#/components/parameters/Politicians.AllQueryOptions.year_of_birth'
+        - $ref: '#/components/parameters/Politicians.AllQueryOptions.party_past'
+        - $ref: '#/components/parameters/Politicians.AllQueryOptions.education'
+        - $ref: '#/components/parameters/Politicians.AllQueryOptions.residence'
+        - $ref: '#/components/parameters/Politicians.AllQueryOptions.statistic_questions'
+        - $ref: '#/components/parameters/Politicians.AllQueryOptions.statistic_questions_answered'
+        - $ref: '#/components/parameters/Politicians.AllQueryOptions.qid_wikidata'
+        - $ref: '#/components/parameters/Politicians.AllQueryOptions.ext_id_bundestagsverwaltung'
+        - $ref: '#/components/parameters/Politicians.AllQueryOptions.field_title'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Politician'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /politicians/{id}:
+    get:
+      operationId: Politicians_single
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/RelatedDataQueryOption'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/Politician'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /polls:
+    get:
+      operationId: Polls_all
+      parameters:
+        - $ref: '#/components/parameters/IdQueryOptions.id'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idIn'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.label'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelStartsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelContains'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelEndsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelNotIn'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_start'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_end'
+        - $ref: '#/components/parameters/PaginationQueryOptions.page'
+        - $ref: '#/components/parameters/PaginationQueryOptions.pager_limit'
+        - $ref: '#/components/parameters/Polls.AllQueryOptions.field_accepted'
+        - $ref: '#/components/parameters/Polls.AllQueryOptions.field_intro'
+        - $ref: '#/components/parameters/Polls.AllQueryOptions.field_introStartsWith'
+        - $ref: '#/components/parameters/Polls.AllQueryOptions.field_introContains'
+        - $ref: '#/components/parameters/Polls.AllQueryOptions.field_introEndsWith'
+        - $ref: '#/components/parameters/Polls.AllQueryOptions.field_introIn'
+        - $ref: '#/components/parameters/Polls.AllQueryOptions.field_introNotIn'
+        - $ref: '#/components/parameters/Polls.AllQueryOptions.field_poll_date'
+        - $ref: '#/components/parameters/Polls.AllQueryOptions.field_poll_dateGreaterThan'
+        - $ref: '#/components/parameters/Polls.AllQueryOptions.field_poll_dateGreaterThanOrEqual'
+        - $ref: '#/components/parameters/Polls.AllQueryOptions.field_poll_dateLessThan'
+        - $ref: '#/components/parameters/Polls.AllQueryOptions.field_poll_dateLessThanOrEqual'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Poll'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /polls/{id}:
+    get:
+      operationId: Polls_single
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/Polls.PollsRelatedDataQueryOptions'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/Poll'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /topics:
+    get:
+      operationId: Topics_all
+      parameters:
+        - $ref: '#/components/parameters/IdQueryOptions.id'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idIn'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.label'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelStartsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelContains'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelEndsWith'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelIn'
+        - $ref: '#/components/parameters/LabelQueryOptions.labelNotIn'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_start'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_end'
+        - $ref: '#/components/parameters/PaginationQueryOptions.page'
+        - $ref: '#/components/parameters/PaginationQueryOptions.pager_limit'
+        - $ref: '#/components/parameters/DescriptionQueryOptions.description'
+        - $ref: '#/components/parameters/DescriptionQueryOptions.descriptionStartsWith'
+        - $ref: '#/components/parameters/DescriptionQueryOptions.descriptionContains'
+        - $ref: '#/components/parameters/DescriptionQueryOptions.descriptionEndsWith'
+        - $ref: '#/components/parameters/DescriptionQueryOptions.descriptionIn'
+        - $ref: '#/components/parameters/DescriptionQueryOptions.descriptionNotIn'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Topic'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /topics/{id}:
+    get:
+      operationId: Topics_single
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/Topic'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /votes:
+    get:
+      operationId: Votes_all
+      parameters:
+        - $ref: '#/components/parameters/IdQueryOptions.id'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idGreaterThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThan'
+        - $ref: '#/components/parameters/IdQueryOptions.idLessThanOrEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotEqual'
+        - $ref: '#/components/parameters/IdQueryOptions.idIn'
+        - $ref: '#/components/parameters/IdQueryOptions.idNotIn'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_start'
+        - $ref: '#/components/parameters/PaginationQueryOptions.range_end'
+        - $ref: '#/components/parameters/PaginationQueryOptions.page'
+        - $ref: '#/components/parameters/PaginationQueryOptions.pager_limit'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.vote'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.voteStartsWith'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.voteContains'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.voteEndsWith'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.voteIn'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.voteNotIn'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.reason_no_show'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.reason_no_showStartsWith'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.reason_no_showContains'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.reason_no_showEndsWith'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.reason_no_showIn'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.reason_no_showNotIn'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.reason_no_show_other'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.reason_no_show_otherStartsWith'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.reason_no_show_otherContains'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.reason_no_show_otherEndsWith'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.reason_no_show_otherIn'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.reason_no_show_otherNotIn'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Vote'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /votes/{id}:
+    get:
+      operationId: Votes_single
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/RelatedDataQueryOption'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - meta
+                  - data
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/Meta'
+                  data:
+                    $ref: '#/components/schemas/Vote'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    CandidaciesMandates.AllQueryOptions.id_external_administration:
+      name: id_external_administration
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    CandidaciesMandates.AllQueryOptions.id_external_administration_description:
+      name: id_external_administration_description
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    CandidaciesMandates.AllQueryOptions.info:
+      name: info
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    CandidaciesMandates.AllQueryOptions.type:
+      name: type
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - candidacy
+          - mandate
+      explode: false
+    CommitteeMemberships.AllQueryOptions.committee_role:
+      name: committee_role
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/CommitteeRole'
+      explode: false
+    CommitteeMemberships.AllQueryOptions.committee_roleContains:
+      name: committee_role[cn]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    CommitteeMemberships.AllQueryOptions.committee_roleEndsWith:
+      name: committee_role[ew]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    CommitteeMemberships.AllQueryOptions.committee_roleIn:
+      name: committee_role[in]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    CommitteeMemberships.AllQueryOptions.committee_roleNotIn:
+      name: committee_role[notin]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    CommitteeMemberships.AllQueryOptions.committee_roleStartsWith:
+      name: committee_role[sw]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProject:
+      name: current_project
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectElectionDate:
+      name: current_project[entity.election_date]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectElectionDateGreaterThan:
+      name: current_project[entity.election_date][gt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectElectionDateGreaterThanOrEqual:
+      name: current_project[entity.election_date][gte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectElectionDateLessThan:
+      name: current_project[entity.election_date][lt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectElectionDateLessThanOrEqual:
+      name: current_project[entity.election_date][lte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectEndDatePeriod:
+      name: current_project[entity.end_date_period]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectEndDatePeriodGreaterThan:
+      name: current_project[entity.end_date_period][gt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectEndDatePeriodGreaterThanOrEqual:
+      name: current_project[entity.end_date_period][gte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectEndDatePeriodLessThan:
+      name: current_project[entity.end_date_period][lt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectEndDatePeriodLessThanOrEqual:
+      name: current_project[entity.end_date_period][lte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectParliament:
+      name: current_project[entity.parliament]
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectPreviousPeriod:
+      name: current_project[entity.previous_period]
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectStartDatePeriod:
+      name: current_project[entity.start_date_period]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectStartDatePeriodGreaterThan:
+      name: current_project[entity.start_date_period][gt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectStartDatePeriodGreaterThanOrEqual:
+      name: current_project[entity.start_date_period][gte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectStartDatePeriodLessThan:
+      name: current_project[entity.start_date_period][lt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectStartDatePeriodLessThanOrEqual:
+      name: current_project[entity.start_date_period][lte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    CurrentProjectReferenceQueryOptions.currentProjectType:
+      name: current_project[entity.type]
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - election
+          - legislature
+      explode: false
+    DescriptionQueryOptions.description:
+      name: description
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    DescriptionQueryOptions.descriptionContains:
+      name: description[cn]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    DescriptionQueryOptions.descriptionEndsWith:
+      name: description[ew]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    DescriptionQueryOptions.descriptionIn:
+      name: description[in]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    DescriptionQueryOptions.descriptionNotIn:
+      name: description[notin]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    DescriptionQueryOptions.descriptionStartsWith:
+      name: description[sw]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    ElectoralDataReferenceQueryOptions.electoralDataConstituency:
+      name: electoral_data[entity.constituency]
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    ElectoralDataReferenceQueryOptions.electoralDataListPosition:
+      name: electoral_data[entity.list_position]
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    FullNameShortNameQueryOptions.full_name:
+      name: full_name
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    FullNameShortNameQueryOptions.full_nameContains:
+      name: full_name[cn]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    FullNameShortNameQueryOptions.full_nameEndsWith:
+      name: full_name[ew]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    FullNameShortNameQueryOptions.full_nameIn:
+      name: full_name[in]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    FullNameShortNameQueryOptions.full_nameNotIn:
+      name: full_name[notin]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    FullNameShortNameQueryOptions.full_nameStartsWith:
+      name: full_name[sw]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    FullNameShortNameQueryOptions.short_name:
+      name: short_name
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    FullNameShortNameQueryOptions.short_nameContains:
+      name: short_name[cn]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    FullNameShortNameQueryOptions.short_nameEndsWith:
+      name: short_name[ew]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    FullNameShortNameQueryOptions.short_nameIn:
+      name: short_name[in]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    FullNameShortNameQueryOptions.short_nameNotIn:
+      name: short_name[notin]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    FullNameShortNameQueryOptions.short_nameStartsWith:
+      name: short_name[sw]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    IdQueryOptions.id:
+      name: id
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    IdQueryOptions.idGreaterThan:
+      name: id[gt]
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    IdQueryOptions.idGreaterThanOrEqual:
+      name: id[gte]
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    IdQueryOptions.idIn:
+      name: id[in]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    IdQueryOptions.idLessThan:
+      name: id[lt]
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    IdQueryOptions.idLessThanOrEqual:
+      name: id[lte]
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    IdQueryOptions.idNotEqual:
+      name: id[ne]
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    IdQueryOptions.idNotIn:
+      name: id[notin]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    LabelQueryOptions.label:
+      name: label
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    LabelQueryOptions.labelContains:
+      name: label[cn]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    LabelQueryOptions.labelEndsWith:
+      name: label[ew]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    LabelQueryOptions.labelIn:
+      name: label[in]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    LabelQueryOptions.labelNotIn:
+      name: label[notin]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    LabelQueryOptions.labelStartsWith:
+      name: label[sw]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    NameQueryOptions.name:
+      name: name
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    NameQueryOptions.nameContains:
+      name: name[cn]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    NameQueryOptions.nameEndsWith:
+      name: name[ew]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    NameQueryOptions.nameIn:
+      name: name[in]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    NameQueryOptions.nameNotIn:
+      name: name[notin]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    NameQueryOptions.nameStartsWith:
+      name: name[sw]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    NumberQueryOptions.number:
+      name: number
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    NumberQueryOptions.numberGreaterThan:
+      name: number[gt]
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    NumberQueryOptions.numberGreaterThanOrEqual:
+      name: number[gte]
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    NumberQueryOptions.numberIn:
+      name: number[in]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    NumberQueryOptions.numberLessThan:
+      name: number[lt]
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    NumberQueryOptions.numberLessThanOrEqual:
+      name: number[lte]
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    NumberQueryOptions.numberNotEqual:
+      name: number[ne]
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    NumberQueryOptions.numberNotIn:
+      name: number[notin]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    PaginationQueryOptions.page:
+      name: page
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    PaginationQueryOptions.pager_limit:
+      name: pager_limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        maximum: 1000
+      explode: false
+    PaginationQueryOptions.range_end:
+      name: range_end
+      in: query
+      required: false
+      schema:
+        type: integer
+        maximum: 1000
+      explode: false
+    PaginationQueryOptions.range_start:
+      name: range_start
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriod:
+      name: parliament_period
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodElectionDate:
+      name: parliament_period[entity.election_date]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodElectionDateGreaterThan:
+      name: parliament_period[entity.election_date][gt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodElectionDateGreaterThanOrEqual:
+      name: parliament_period[entity.election_date][gte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodElectionDateLessThan:
+      name: parliament_period[entity.election_date][lt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodElectionDateLessThanOrEqual:
+      name: parliament_period[entity.election_date][lte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodEndDatePeriod:
+      name: parliament_period[entity.end_date_period]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodEndDatePeriodGreaterThan:
+      name: parliament_period[entity.end_date_period][gt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodEndDatePeriodGreaterThanOrEqual:
+      name: parliament_period[entity.end_date_period][gte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodEndDatePeriodLessThan:
+      name: parliament_period[entity.end_date_period][lt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodEndDatePeriodLessThanOrEqual:
+      name: parliament_period[entity.end_date_period][lte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodParliament:
+      name: parliament_period[entity.parliament]
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodPreviousPeriod:
+      name: parliament_period[entity.previous_period]
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodStartDatePeriod:
+      name: parliament_period[entity.start_date_period]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodStartDatePeriodGreaterThan:
+      name: parliament_period[entity.start_date_period][gt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodStartDatePeriodGreaterThanOrEqual:
+      name: parliament_period[entity.start_date_period][gte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodStartDatePeriodLessThan:
+      name: parliament_period[entity.start_date_period][lt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodStartDatePeriodLessThanOrEqual:
+      name: parliament_period[entity.start_date_period][lte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriodReferenceQueryOptions.parliamentPeriodType:
+      name: parliament_period[entity.type]
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - election
+          - legislature
+      explode: false
+    ParliamentPeriods.AllQueryOptions.election_date:
+      name: election_date
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriods.AllQueryOptions.election_dateGreaterThan:
+      name: election_date[gt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriods.AllQueryOptions.election_dateGreaterThanOrEqual:
+      name: election_date[gte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriods.AllQueryOptions.election_dateLessThan:
+      name: election_date[lt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriods.AllQueryOptions.election_dateLessThanOrEqual:
+      name: election_date[lte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriods.AllQueryOptions.end_date_period:
+      name: end_date_period
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriods.AllQueryOptions.end_date_periodGreaterThan:
+      name: end_date_period[gt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriods.AllQueryOptions.end_date_periodGreaterThanOrEqual:
+      name: end_date_period[gte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriods.AllQueryOptions.end_date_periodLessThan:
+      name: end_date_period[lt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriods.AllQueryOptions.end_date_periodLessThanOrEqual:
+      name: end_date_period[lte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriods.AllQueryOptions.start_date_period:
+      name: start_date_period
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriods.AllQueryOptions.start_date_periodGreaterThan:
+      name: start_date_period[gt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriods.AllQueryOptions.start_date_periodGreaterThanOrEqual:
+      name: start_date_period[gte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriods.AllQueryOptions.start_date_periodLessThan:
+      name: start_date_period[lt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriods.AllQueryOptions.start_date_periodLessThanOrEqual:
+      name: start_date_period[lte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    ParliamentPeriods.AllQueryOptions.type:
+      name: type
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Parliaments.AllQueryOptions.label_external_long:
+      name: label_external_long
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Parliaments.AllQueryOptions.label_external_longContains:
+      name: label_external_long[cn]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Parliaments.AllQueryOptions.label_external_longEndsWith:
+      name: label_external_long[ew]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Parliaments.AllQueryOptions.label_external_longIn:
+      name: label_external_long[in]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Parliaments.AllQueryOptions.label_external_longNotIn:
+      name: label_external_long[notin]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Parliaments.AllQueryOptions.label_external_longStartsWith:
+      name: label_external_long[sw]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Politicians.AllQueryOptions.birth_name:
+      name: birth_name
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Politicians.AllQueryOptions.education:
+      name: education
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Politicians.AllQueryOptions.ext_id_bundestagsverwaltung:
+      name: ext_id_bundestagsverwaltung
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Politicians.AllQueryOptions.field_title:
+      name: field_title
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Politicians.AllQueryOptions.first_name:
+      name: first_name
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Politicians.AllQueryOptions.last_name:
+      name: last_name
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Politicians.AllQueryOptions.party_past:
+      name: party_past
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Politicians.AllQueryOptions.qid_wikidata:
+      name: qid_wikidata
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Politicians.AllQueryOptions.residence:
+      name: residence
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Politicians.AllQueryOptions.sex:
+      name: sex
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - m
+          - f
+          - d
+      explode: false
+    Politicians.AllQueryOptions.statistic_questions:
+      name: statistic_questions
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    Politicians.AllQueryOptions.statistic_questions_answered:
+      name: statistic_questions_answered
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    Politicians.AllQueryOptions.year_of_birth:
+      name: year_of_birth
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    Polls.AllQueryOptions.field_accepted:
+      name: field_accepted
+      in: query
+      required: false
+      schema:
+        type: number
+        enum:
+          - 1
+          - 0
+      explode: false
+    Polls.AllQueryOptions.field_intro:
+      name: field_intro
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Polls.AllQueryOptions.field_introContains:
+      name: field_intro[cn]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Polls.AllQueryOptions.field_introEndsWith:
+      name: field_intro[ew]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Polls.AllQueryOptions.field_introIn:
+      name: field_intro[in]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Polls.AllQueryOptions.field_introNotIn:
+      name: field_intro[notin]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Polls.AllQueryOptions.field_introStartsWith:
+      name: field_intro[sw]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Polls.AllQueryOptions.field_poll_date:
+      name: field_poll_date
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    Polls.AllQueryOptions.field_poll_dateGreaterThan:
+      name: field_poll_date[gt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    Polls.AllQueryOptions.field_poll_dateGreaterThanOrEqual:
+      name: field_poll_date[gte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    Polls.AllQueryOptions.field_poll_dateLessThan:
+      name: field_poll_date[lt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    Polls.AllQueryOptions.field_poll_dateLessThanOrEqual:
+      name: field_poll_date[lte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    Polls.PollsRelatedDataQueryOptions:
+      name: related_data
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - show_information
+          - votes
+      explode: false
+    RelatedDataQueryOption:
+      name: related_data
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - show_information
+      explode: false
+    StartEndDateQueryOptions.end_date:
+      name: end_date
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    StartEndDateQueryOptions.end_dateGreaterThan:
+      name: end_date[gt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    StartEndDateQueryOptions.end_dateGreaterThanOrEqual:
+      name: end_date[gte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    StartEndDateQueryOptions.end_dateLessThan:
+      name: end_date[lt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    StartEndDateQueryOptions.end_dateLessThanOrEqual:
+      name: end_date[lte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    StartEndDateQueryOptions.start_date:
+      name: start_date
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    StartEndDateQueryOptions.start_dateGreaterThan:
+      name: start_date[gt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    StartEndDateQueryOptions.start_dateGreaterThanOrEqual:
+      name: start_date[gte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    StartEndDateQueryOptions.start_dateLessThan:
+      name: start_date[lt]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    StartEndDateQueryOptions.start_dateLessThanOrEqual:
+      name: start_date[lte]
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+      explode: false
+    Votes.AllQueryOptions.reason_no_show:
+      name: reason_no_show
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - maternity_protection
+          - fell_ill
+          - other
+      explode: false
+    Votes.AllQueryOptions.reason_no_showContains:
+      name: reason_no_show[cn]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Votes.AllQueryOptions.reason_no_showEndsWith:
+      name: reason_no_show[ew]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Votes.AllQueryOptions.reason_no_showIn:
+      name: reason_no_show[in]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Votes.AllQueryOptions.reason_no_showNotIn:
+      name: reason_no_show[notin]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Votes.AllQueryOptions.reason_no_showStartsWith:
+      name: reason_no_show[sw]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Votes.AllQueryOptions.reason_no_show_other:
+      name: reason_no_show_other
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Votes.AllQueryOptions.reason_no_show_otherContains:
+      name: reason_no_show_other[cn]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Votes.AllQueryOptions.reason_no_show_otherEndsWith:
+      name: reason_no_show_other[ew]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Votes.AllQueryOptions.reason_no_show_otherIn:
+      name: reason_no_show_other[in]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Votes.AllQueryOptions.reason_no_show_otherNotIn:
+      name: reason_no_show_other[notin]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Votes.AllQueryOptions.reason_no_show_otherStartsWith:
+      name: reason_no_show_other[sw]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Votes.AllQueryOptions.vote:
+      name: vote
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - 'yes'
+          - 'no'
+          - no_show
+      explode: false
+    Votes.AllQueryOptions.voteContains:
+      name: vote[cn]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Votes.AllQueryOptions.voteEndsWith:
+      name: vote[ew]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Votes.AllQueryOptions.voteIn:
+      name: vote[in]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Votes.AllQueryOptions.voteNotIn:
+      name: vote[notin]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+    Votes.AllQueryOptions.voteStartsWith:
+      name: vote[sw]
+      in: query
+      required: false
+      schema:
+        type: string
+      explode: false
+  schemas:
+    ApiMeta:
+      type: object
+      required:
+        - version
+        - changelog
+        - licence
+        - licence_link
+        - documentation
+      properties:
+        version:
+          type: string
+        changelog:
+          type: string
+          format: uri
+        licence:
+          type: string
+        licence_link:
+          type: string
+          format: uri
+        documentation:
+          type: string
+          format: uri
+    CandidacyMandate:
+      type: object
+      required:
+        - entity_type
+        - id_external_administration
+        - id_external_administration_description
+        - type
+        - parliament_period
+        - politician
+        - party
+        - start_date
+        - end_date
+        - info
+        - electoral_data
+        - fraction_membership
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - candidacy_mandate
+        id_external_administration:
+          type: string
+        id_external_administration_description:
+          type: string
+        type:
+          type: string
+          enum:
+            - candidacy
+            - mandate
+        parliament_period:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        politician:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        party:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        start_date:
+          type: string
+          format: date
+          nullable: true
+        end_date:
+          type: string
+          format: date
+          nullable: true
+        info:
+          type: string
+        electoral_data:
+          $ref: '#/components/schemas/ElectoralData'
+        fraction_membership:
+          type: array
+          items:
+            $ref: '#/components/schemas/FractionMembership'
+      allOf:
+        - $ref: '#/components/schemas/Entity'
+    Cities.AllQueryOptions:
+      type: object
+      properties:
+        id:
+          type: integer
+        idGreaterThan:
+          type: integer
+        idGreaterThanOrEqual:
+          type: integer
+        idLessThan:
+          type: integer
+        idLessThanOrEqual:
+          type: integer
+        idNotEqual:
+          type: integer
+        idIn:
+          type: string
+        idNotIn:
+          type: string
+        label:
+          type: string
+        labelStartsWith:
+          type: string
+        labelContains:
+          type: string
+        labelEndsWith:
+          type: string
+        labelIn:
+          type: string
+        labelNotIn:
+          type: string
+        range_start:
+          type: integer
+        range_end:
+          type: integer
+          maximum: 1000
+        page:
+          type: integer
+        pager_limit:
+          type: integer
+          maximum: 1000
+    City:
+      type: object
+      required:
+        - entity_type
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - city
+      allOf:
+        - $ref: '#/components/schemas/Entity'
+    Committee:
+      type: object
+      required:
+        - entity_type
+        - field_legislature
+        - field_topics
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - committee
+        field_legislature:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        field_topics:
+          type: array
+          items:
+            type: object
+            required:
+              - abgeordnetenwatch_url
+              - id
+              - entity_type
+              - label
+              - api_url
+            properties:
+              abgeordnetenwatch_url:
+                type: string
+                format: uri
+                title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+              id:
+                type: integer
+                title: Die eindeutige Id der Entität
+              entity_type:
+                type: string
+                title: Die eindeutige Id des Entitätstyps
+              label:
+                type: string
+                title: Das Label / die Bezeichnung der Entität
+              api_url:
+                type: string
+                format: uri
+                title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+      allOf:
+        - $ref: '#/components/schemas/RegularEntity'
+    CommitteeMembership:
+      type: object
+      required:
+        - entity_type
+        - committee
+        - candidacy_mandate
+        - committee_role
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - committee_membership
+        committee:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        candidacy_mandate:
+          type: object
+          required:
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        committee_role:
+          $ref: '#/components/schemas/CommitteeRole'
+      allOf:
+        - $ref: '#/components/schemas/RegularEntity'
+    CommitteeRole:
+      type: string
+      enum:
+        - chairperson
+        - vice_chairperson
+        - foreperson
+        - spokesperson
+        - alternate_spokesperson
+        - secretary
+        - alternate_secretary
+        - advisory_member
+        - eligible_member
+        - member
+        - alternate_member
+    Committees.AllQueryOptions:
+      type: object
+      properties:
+        id:
+          type: integer
+        idGreaterThan:
+          type: integer
+        idGreaterThanOrEqual:
+          type: integer
+        idLessThan:
+          type: integer
+        idLessThanOrEqual:
+          type: integer
+        idNotEqual:
+          type: integer
+        idIn:
+          type: string
+        idNotIn:
+          type: string
+        label:
+          type: string
+        labelStartsWith:
+          type: string
+        labelContains:
+          type: string
+        labelEndsWith:
+          type: string
+        labelIn:
+          type: string
+        labelNotIn:
+          type: string
+        range_start:
+          type: integer
+        range_end:
+          type: integer
+          maximum: 1000
+        page:
+          type: integer
+        pager_limit:
+          type: integer
+          maximum: 1000
+    Constituencies.AllQueryOptions:
+      type: object
+      properties:
+        id:
+          type: integer
+        idGreaterThan:
+          type: integer
+        idGreaterThanOrEqual:
+          type: integer
+        idLessThan:
+          type: integer
+        idLessThanOrEqual:
+          type: integer
+        idNotEqual:
+          type: integer
+        idIn:
+          type: string
+        idNotIn:
+          type: string
+        label:
+          type: string
+        labelStartsWith:
+          type: string
+        labelContains:
+          type: string
+        labelEndsWith:
+          type: string
+        labelIn:
+          type: string
+        labelNotIn:
+          type: string
+        range_start:
+          type: integer
+        range_end:
+          type: integer
+          maximum: 1000
+        page:
+          type: integer
+        pager_limit:
+          type: integer
+          maximum: 1000
+        name:
+          type: string
+        nameStartsWith:
+          type: string
+        nameContains:
+          type: string
+        nameEndsWith:
+          type: string
+        nameIn:
+          type: string
+        nameNotIn:
+          type: string
+        number:
+          type: integer
+        numberGreaterThan:
+          type: integer
+        numberGreaterThanOrEqual:
+          type: integer
+        numberLessThan:
+          type: integer
+        numberLessThanOrEqual:
+          type: integer
+        numberNotEqual:
+          type: integer
+        numberIn:
+          type: string
+        numberNotIn:
+          type: string
+        parliamentPeriod:
+          type: integer
+        parliamentPeriodType:
+          type: string
+          enum:
+            - election
+            - legislature
+        parliamentPeriodElectionDate:
+          type: string
+          format: date
+        parliamentPeriodElectionDateGreaterThan:
+          type: string
+          format: date
+        parliamentPeriodElectionDateGreaterThanOrEqual:
+          type: string
+          format: date
+        parliamentPeriodElectionDateLessThan:
+          type: string
+          format: date
+        parliamentPeriodElectionDateLessThanOrEqual:
+          type: string
+          format: date
+        parliamentPeriodStartDatePeriod:
+          type: string
+          format: date
+        parliamentPeriodStartDatePeriodGreaterThan:
+          type: string
+          format: date
+        parliamentPeriodStartDatePeriodGreaterThanOrEqual:
+          type: string
+          format: date
+        parliamentPeriodStartDatePeriodLessThan:
+          type: string
+          format: date
+        parliamentPeriodStartDatePeriodLessThanOrEqual:
+          type: string
+          format: date
+        parliamentPeriodEndDatePeriod:
+          type: string
+          format: date
+        parliamentPeriodEndDatePeriodGreaterThan:
+          type: string
+          format: date
+        parliamentPeriodEndDatePeriodGreaterThanOrEqual:
+          type: string
+          format: date
+        parliamentPeriodEndDatePeriodLessThan:
+          type: string
+          format: date
+        parliamentPeriodEndDatePeriodLessThanOrEqual:
+          type: string
+          format: date
+        parliamentPeriodParliament:
+          type: integer
+        parliamentPeriodPreviousPeriod:
+          type: integer
+    Constituency:
+      type: object
+      required:
+        - entity_type
+        - name
+        - number
+        - parliament_period
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - constituency
+        name:
+          type: string
+        number:
+          type: integer
+        parliament_period:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+      allOf:
+        - $ref: '#/components/schemas/RegularEntity'
+    Countries.AllQueryOptions:
+      type: object
+      properties:
+        id:
+          type: integer
+        idGreaterThan:
+          type: integer
+        idGreaterThanOrEqual:
+          type: integer
+        idLessThan:
+          type: integer
+        idLessThanOrEqual:
+          type: integer
+        idNotEqual:
+          type: integer
+        idIn:
+          type: string
+        idNotIn:
+          type: string
+        label:
+          type: string
+        labelStartsWith:
+          type: string
+        labelContains:
+          type: string
+        labelEndsWith:
+          type: string
+        labelIn:
+          type: string
+        labelNotIn:
+          type: string
+        range_start:
+          type: integer
+        range_end:
+          type: integer
+          maximum: 1000
+        page:
+          type: integer
+        pager_limit:
+          type: integer
+          maximum: 1000
+    Country:
+      type: object
+      required:
+        - entity_type
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - country
+      allOf:
+        - $ref: '#/components/schemas/Entity'
+    DocumentLink:
+      type: object
+      required:
+        - uri
+        - title
+      properties:
+        uri:
+          type: string
+          format: uri
+        title:
+          type: string
+    ElectionProgram:
+      type: object
+      required:
+        - entity_type
+        - parliament_period
+        - party
+        - link
+        - file
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - election_program
+        parliament_period:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        party:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        link:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentLink'
+        file:
+          type: string
+          format: uri
+      allOf:
+        - $ref: '#/components/schemas/Entity'
+    ElectionPrograms.AllQueryOptions:
+      type: object
+      properties:
+        id:
+          type: integer
+        idGreaterThan:
+          type: integer
+        idGreaterThanOrEqual:
+          type: integer
+        idLessThan:
+          type: integer
+        idLessThanOrEqual:
+          type: integer
+        idNotEqual:
+          type: integer
+        idIn:
+          type: string
+        idNotIn:
+          type: string
+        label:
+          type: string
+        labelStartsWith:
+          type: string
+        labelContains:
+          type: string
+        labelEndsWith:
+          type: string
+        labelIn:
+          type: string
+        labelNotIn:
+          type: string
+        range_start:
+          type: integer
+        range_end:
+          type: integer
+          maximum: 1000
+        page:
+          type: integer
+        pager_limit:
+          type: integer
+          maximum: 1000
+    ElectoralData:
+      type: object
+      required:
+        - electoral_list
+        - list_position
+        - constituency
+        - constituency_result
+        - constituency_result_count
+        - mandate_won
+      properties:
+        electoral_list:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        list_position:
+          type: integer
+        constituency:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        constituency_result:
+          type: number
+        constituency_result_count:
+          type: integer
+        mandate_won:
+          type: string
+          enum:
+            - constituency
+            - list
+            - moved_up
+    ElectoralList:
+      type: object
+      required:
+        - entity_type
+        - name
+        - parliament_period
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - electoral_list
+        name:
+          type: string
+        parliament_period:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+      allOf:
+        - $ref: '#/components/schemas/RegularEntity'
+    ElectoralLists.AllQueryOptions:
+      type: object
+      properties:
+        id:
+          type: integer
+        idGreaterThan:
+          type: integer
+        idGreaterThanOrEqual:
+          type: integer
+        idLessThan:
+          type: integer
+        idLessThanOrEqual:
+          type: integer
+        idNotEqual:
+          type: integer
+        idIn:
+          type: string
+        idNotIn:
+          type: string
+        label:
+          type: string
+        labelStartsWith:
+          type: string
+        labelContains:
+          type: string
+        labelEndsWith:
+          type: string
+        labelIn:
+          type: string
+        labelNotIn:
+          type: string
+        range_start:
+          type: integer
+        range_end:
+          type: integer
+          maximum: 1000
+        page:
+          type: integer
+        pager_limit:
+          type: integer
+          maximum: 1000
+        name:
+          type: string
+        nameStartsWith:
+          type: string
+        nameContains:
+          type: string
+        nameEndsWith:
+          type: string
+        nameIn:
+          type: string
+        nameNotIn:
+          type: string
+    Entity:
+      type: object
+      required:
+        - id
+        - entity_type
+        - label
+        - api_url
+      properties:
+        id:
+          type: integer
+          title: Die eindeutige Id der Entität
+        entity_type:
+          type: string
+          title: Die eindeutige Id des Entitätstyps
+        label:
+          type: string
+          title: Das Label / die Bezeichnung der Entität
+        api_url:
+          type: string
+          format: uri
+          title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+      discriminator:
+        propertyName: entity_type
+        mapping:
+          parliament_period: '#/components/schemas/ParliamentPeriod'
+          politician: '#/components/schemas/Politician'
+          party: '#/components/schemas/Party'
+          electoral_list: '#/components/schemas/ElectoralList'
+          constituency: '#/components/schemas/Constituency'
+          fraction: '#/components/schemas/Fraction'
+          committee: '#/components/schemas/Committee'
+          topic: '#/components/schemas/Topic'
+          committee_membership: '#/components/schemas/CommitteeMembership'
+          candidacy_mandate: '#/components/schemas/CandidacyMandate'
+          election_program: '#/components/schemas/ElectionProgram'
+          country: '#/components/schemas/Country'
+          city: '#/components/schemas/City'
+    EntityListQueryOptions:
+      type: object
+      properties:
+        id:
+          type: integer
+        idGreaterThan:
+          type: integer
+        idGreaterThanOrEqual:
+          type: integer
+        idLessThan:
+          type: integer
+        idLessThanOrEqual:
+          type: integer
+        idNotEqual:
+          type: integer
+        idIn:
+          type: string
+        idNotIn:
+          type: string
+        label:
+          type: string
+        labelStartsWith:
+          type: string
+        labelContains:
+          type: string
+        labelEndsWith:
+          type: string
+        labelIn:
+          type: string
+        labelNotIn:
+          type: string
+        range_start:
+          type: integer
+        range_end:
+          type: integer
+          maximum: 1000
+        page:
+          type: integer
+        pager_limit:
+          type: integer
+          maximum: 1000
+    ErrorResponse:
+      type: object
+      required:
+        - meta
+        - data
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        data:
+          type: object
+    Fraction:
+      type: object
+      required:
+        - entity_type
+        - full_name
+        - short_name
+        - legislature
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - fraction
+        full_name:
+          type: string
+        short_name:
+          type: string
+        legislature:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+      allOf:
+        - $ref: '#/components/schemas/RegularEntity'
+    FractionMembership:
+      type: object
+      required:
+        - label
+        - faction
+        - valid_from
+        - valid_until
+      properties:
+        label:
+          type: string
+        faction:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        valid_from:
+          type: string
+          format: date
+        valid_until:
+          type: string
+          format: date
+    Fractions.AllQueryOptions:
+      type: object
+      properties:
+        id:
+          type: integer
+        idGreaterThan:
+          type: integer
+        idGreaterThanOrEqual:
+          type: integer
+        idLessThan:
+          type: integer
+        idLessThanOrEqual:
+          type: integer
+        idNotEqual:
+          type: integer
+        idIn:
+          type: string
+        idNotIn:
+          type: string
+        label:
+          type: string
+        labelStartsWith:
+          type: string
+        labelContains:
+          type: string
+        labelEndsWith:
+          type: string
+        labelIn:
+          type: string
+        labelNotIn:
+          type: string
+        range_start:
+          type: integer
+        range_end:
+          type: integer
+          maximum: 1000
+        page:
+          type: integer
+        pager_limit:
+          type: integer
+          maximum: 1000
+        full_name:
+          type: string
+        full_nameStartsWith:
+          type: string
+        full_nameContains:
+          type: string
+        full_nameEndsWith:
+          type: string
+        full_nameIn:
+          type: string
+        full_nameNotIn:
+          type: string
+        short_name:
+          type: string
+        short_nameStartsWith:
+          type: string
+        short_nameContains:
+          type: string
+        short_nameEndsWith:
+          type: string
+        short_nameIn:
+          type: string
+        short_nameNotIn:
+          type: string
+    Meta:
+      type: object
+      required:
+        - abgeordnetenwatch_api
+        - status
+        - status_message
+        - result
+      properties:
+        abgeordnetenwatch_api:
+          $ref: '#/components/schemas/ApiMeta'
+        status:
+          $ref: '#/components/schemas/Status'
+        status_message:
+          type: string
+        result:
+          $ref: '#/components/schemas/ResultMeta'
+    Parliament:
+      type: object
+      required:
+        - entity_type
+        - label_external_long
+        - current_project
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - parliament
+        label_external_long:
+          type: string
+          title: Eine lange Bezeichnung für das Parlament, z.B. "Abgeordnetenhaus von Berlin"
+        current_project:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+      allOf:
+        - $ref: '#/components/schemas/RegularEntity'
+    ParliamentPeriod:
+      type: object
+      required:
+        - entity_type
+        - parliament
+        - previous_period
+        - type
+        - election_date
+        - start_date_period
+        - end_date_period
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - parliament_period
+        parliament:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+          title: Definiert das Parlament, zu dem diese Parlamentsperiode gehört
+        previous_period:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+          title: Die Parlamentsperiode, auf welche die Parlamentsperiode folgt. Im Moment wurde das Feld nur für Legislaturen gepflegt, um die vorherige Wahlperiode zu definieren
+        type:
+          type: string
+          enum:
+            - election
+            - legislature
+        election_date:
+          type: string
+          format: date
+        start_date_period:
+          type: string
+          format: date
+        end_date_period:
+          type: string
+          format: date
+      allOf:
+        - $ref: '#/components/schemas/RegularEntity'
+    Parties.AllQueryOptions:
+      type: object
+      properties:
+        id:
+          type: integer
+        idGreaterThan:
+          type: integer
+        idGreaterThanOrEqual:
+          type: integer
+        idLessThan:
+          type: integer
+        idLessThanOrEqual:
+          type: integer
+        idNotEqual:
+          type: integer
+        idIn:
+          type: string
+        idNotIn:
+          type: string
+        label:
+          type: string
+        labelStartsWith:
+          type: string
+        labelContains:
+          type: string
+        labelEndsWith:
+          type: string
+        labelIn:
+          type: string
+        labelNotIn:
+          type: string
+        range_start:
+          type: integer
+        range_end:
+          type: integer
+          maximum: 1000
+        page:
+          type: integer
+        pager_limit:
+          type: integer
+          maximum: 1000
+        full_name:
+          type: string
+        full_nameStartsWith:
+          type: string
+        full_nameContains:
+          type: string
+        full_nameEndsWith:
+          type: string
+        full_nameIn:
+          type: string
+        full_nameNotIn:
+          type: string
+        short_name:
+          type: string
+        short_nameStartsWith:
+          type: string
+        short_nameContains:
+          type: string
+        short_nameEndsWith:
+          type: string
+        short_nameIn:
+          type: string
+        short_nameNotIn:
+          type: string
+    Party:
+      type: object
+      required:
+        - entity_type
+        - full_name
+        - short_name
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - party
+        full_name:
+          type: string
+        short_name:
+          type: string
+      allOf:
+        - $ref: '#/components/schemas/RegularEntity'
+    Politician:
+      type: object
+      required:
+        - entity_type
+        - first_name
+        - last_name
+        - birth_name
+        - sex
+        - year_of_birth
+        - party
+        - party_past
+        - education
+        - residence
+        - statistic_questions
+        - statistic_questions_answered
+        - qid_wikidata
+        - ext_id_bundestagsverwaltung
+        - field_title
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - politician
+        first_name:
+          type: string
+        last_name:
+          type: string
+        birth_name:
+          type: string
+          nullable: true
+        sex:
+          type: string
+          enum:
+            - m
+            - f
+            - d
+          nullable: true
+        year_of_birth:
+          type: integer
+        party:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        party_past:
+          type: string
+        education:
+          type: string
+        residence:
+          type: string
+        statistic_questions:
+          type: string
+        statistic_questions_answered:
+          type: string
+        qid_wikidata:
+          type: string
+        ext_id_bundestagsverwaltung:
+          type: string
+        field_title:
+          type: string
+      allOf:
+        - $ref: '#/components/schemas/RegularEntity'
+    Poll:
+      type: object
+      required:
+        - entity_type
+        - field_committees
+        - field_intro
+        - field_legislature
+        - field_poll_date
+        - field_accepted
+        - field_related_links
+        - field_topics
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - poll
+        field_committees:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        field_intro:
+          type: string
+        field_legislature:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        field_poll_date:
+          type: string
+          format: date
+        field_accepted:
+          type: boolean
+        field_related_links:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: string
+                format: uri
+              title:
+                type: string
+            required:
+              - uri
+              - title
+        field_topics:
+          type: array
+          items:
+            type: object
+            required:
+              - abgeordnetenwatch_url
+              - id
+              - entity_type
+              - label
+              - api_url
+            properties:
+              abgeordnetenwatch_url:
+                type: string
+                format: uri
+                title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+              id:
+                type: integer
+                title: Die eindeutige Id der Entität
+              entity_type:
+                type: string
+                title: Die eindeutige Id des Entitätstyps
+              label:
+                type: string
+                title: Das Label / die Bezeichnung der Entität
+              api_url:
+                type: string
+                format: uri
+                title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        related_data:
+          $ref: '#/components/schemas/PollsRelatedData'
+      allOf:
+        - $ref: '#/components/schemas/RegularEntity'
+    PollsRelatedData:
+      type: object
+      properties:
+        votes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vote'
+    RegularEntity:
+      type: object
+      required:
+        - abgeordnetenwatch_url
+      properties:
+        abgeordnetenwatch_url:
+          type: string
+          format: uri
+          title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+      allOf:
+        - $ref: '#/components/schemas/Entity'
+    ResultMeta:
+      type: object
+      required:
+        - count
+        - total
+      properties:
+        count:
+          type: integer
+        total:
+          type: integer
+        page:
+          type: integer
+        results_per_page:
+          type: integer
+        range_start:
+          type: integer
+        range_end:
+          type: integer
+        entity_id:
+          type: string
+        entity_type:
+          type: string
+    Status:
+      type: string
+      enum:
+        - ok
+        - warning
+        - error
+    Topic:
+      type: object
+      required:
+        - entity_type
+        - description
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - topic
+        description:
+          type: string
+        parent:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+      allOf:
+        - $ref: '#/components/schemas/RegularEntity'
+    Topics.AllQueryOptions:
+      type: object
+      properties:
+        id:
+          type: integer
+        idGreaterThan:
+          type: integer
+        idGreaterThanOrEqual:
+          type: integer
+        idLessThan:
+          type: integer
+        idLessThanOrEqual:
+          type: integer
+        idNotEqual:
+          type: integer
+        idIn:
+          type: string
+        idNotIn:
+          type: string
+        label:
+          type: string
+        labelStartsWith:
+          type: string
+        labelContains:
+          type: string
+        labelEndsWith:
+          type: string
+        labelIn:
+          type: string
+        labelNotIn:
+          type: string
+        range_start:
+          type: integer
+        range_end:
+          type: integer
+          maximum: 1000
+        page:
+          type: integer
+        pager_limit:
+          type: integer
+          maximum: 1000
+        description:
+          type: string
+        descriptionStartsWith:
+          type: string
+        descriptionContains:
+          type: string
+        descriptionEndsWith:
+          type: string
+        descriptionIn:
+          type: string
+        descriptionNotIn:
+          type: string
+    Vote:
+      type: object
+      required:
+        - entity_type
+        - mandate
+        - fraction
+        - poll
+        - vote
+        - reason_no_show
+        - reason_no_show_other
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - vote
+        mandate:
+          type: object
+          required:
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        fraction:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        poll:
+          type: object
+          required:
+            - abgeordnetenwatch_url
+            - id
+            - entity_type
+            - label
+            - api_url
+          properties:
+            abgeordnetenwatch_url:
+              type: string
+              format: uri
+              title: Die URL zur Detailansicht für diese Entität auf abgeordnetenwatch.de
+            id:
+              type: integer
+              title: Die eindeutige Id der Entität
+            entity_type:
+              type: string
+              title: Die eindeutige Id des Entitätstyps
+            label:
+              type: string
+              title: Das Label / die Bezeichnung der Entität
+            api_url:
+              type: string
+              format: uri
+              title: Der API-Pfad, unter dem die einzelne Entität aufgerufen werden kann
+        vote:
+          type: string
+          enum:
+            - 'yes'
+            - 'no'
+            - no_show
+        reason_no_show:
+          type: string
+          enum:
+            - maternity_protection
+            - fell_ill
+            - other
+          nullable: true
+        reason_no_show_other:
+          type: string
+          nullable: true
+      allOf:
+        - $ref: '#/components/schemas/Entity'
+servers:
+  - url: https://www.abgeordnetenwatch.de/api/v2/
+    variables: {}

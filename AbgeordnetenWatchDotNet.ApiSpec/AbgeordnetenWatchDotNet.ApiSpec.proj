@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetPath>$(BaseOutputPath)@typespec\openapi3\openapi.yaml</TargetPath>
+		<SpecFileName>openapi.yaml</SpecFileName>
+		<SpecOutputPath>$(MSBuildProjectDirectory)\$(SpecFileName)</SpecOutputPath>
 	</PropertyGroup>
 
 	<Target Name="InstallYarnPackages">
@@ -9,14 +10,22 @@
 	</Target>
 
 	<Target Name="CoreCompile" DependsOnTargets="InstallYarnPackages">
-		<Exec Command="yarn tsp compile $(MSBuildProjectDirectory) --output-dir $(BaseOutputPath)" LogStandardErrorAsError="true"/>
+		<Exec Command="yarn tsp compile $(MSBuildProjectDirectory) --output-dir $(BaseOutputPath)" />
 	</Target>
 
-	<Target Name="Clean">
+	<Target Name="DetermineTargetPath">
+		<PropertyGroup>
+			<TargetPath>$(BaseOutputPath)@typespec\openapi3\openapi.yaml</TargetPath>
+		</PropertyGroup>
+	</Target>
+
+	<Target Name="Clean" DependsOnTargets="DetermineTargetPath">
 		<Delete Files="$(TargetPath)"/>
 	</Target>
 
-	<Target Name="GetTargetPath" Returns="$(TargetPath)"/>
+	<Target Name="PublishSpecFile" AfterTargets="CoreCompile" DependsOnTargets="DetermineTargetPath" Inputs="$(TargetPath)" Outputs="$(SpecOutputPath)">
+		<Copy SourceFiles="$(TargetPath)" DestinationFiles="$(SpecOutputPath)"/>
+	</Target>
 
 	<ItemGroup>
 		<None Include="**/*.*"/>
