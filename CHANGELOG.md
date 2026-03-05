@@ -2,6 +2,7 @@
 
 * BREAKING: converted extension methods for query option builders to extension properties
 * Added more query filters in the spec (which you can now filter for)
+* Support for AbgeordnetenWatch API 2.8.2
 
 # 1.0.1
 
