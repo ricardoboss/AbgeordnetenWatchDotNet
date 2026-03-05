@@ -25,7 +25,7 @@ using TypeSpec.Http;
 @server("https://www.abgeordnetenwatch.de/api/v2/")
 @info(#{
 	title: "AbgeordnetenWatch API",
-	version: "2.7",
+	version: "2.8.2",
 	license: #{
 		name: "CC0 1.0",
 		url: "https://creativecommons.org/publicdomain/zero/1.0/deed.de",
