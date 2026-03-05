@@ -73,10 +73,10 @@
 	</Target>
 
 	<ItemGroup>
-		<PackageReference Include="JetBrains.Annotations" Version="2025.2.2" />
-		<PackageReference Include="Microsoft.Kiota.Abstractions" Version="1.21.0" />
-		<PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.21.0" />
-		<PackageReference Include="Microsoft.Kiota.Serialization.Json" Version="1.21.0" />
+		<PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
+		<PackageReference Include="Microsoft.Kiota.Abstractions" Version="1.22.0" />
+		<PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.22.0" />
+		<PackageReference Include="Microsoft.Kiota.Serialization.Json" Version="1.22.0" />
 	</ItemGroup>
 
 	<ItemGroup>
