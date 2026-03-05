@@ -1,3 +1,7 @@
+![NuGet Downloads](https://img.shields.io/nuget/dt/AbgeordnetenWatchDotNet)
+![NuGet Version](https://img.shields.io/nuget/v/AbgeordnetenWatchDotNet)
+![GitHub commits since latest release](https://img.shields.io/github/commits-since/ricardoboss/AbgeordnetenWatchDotNet/latest)
+
 # Installation
 
 ```shell
@@ -31,7 +35,7 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
 ## Setup
 
-- You need to have [.NET 9 or later](https://dotnet.microsoft.com/en-us/download) installed
+- You need to have [.NET 10 or later](https://dotnet.microsoft.com/en-us/download) installed
 - You need to have [corepack](https://yarnpkg.com/corepack) enabled
   - This also requires [Node 16.9 or later](https://nodejs.org/en/download)
 
@@ -46,7 +50,7 @@ Since the API spec is not available as an OpenAPI specification, we generate our
 
 The spec is generated using MSBuild and the typespec compiler in the
 [`AbgeordnetenWatchDotNet.ApiSpec`](./AbgeordnetenWatchDotNet.ApiSpec) project.
-Building it causes the the spec to get generated.
+Building it causes the spec to get generated.
 
 ### API Client
 
