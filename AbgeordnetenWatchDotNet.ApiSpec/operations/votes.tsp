@@ -66,8 +66,16 @@ model AllQueryOptions {
 	@query("reason_no_show_other[notin]")
 	reason_no_show_otherNotIn?: string;
 
+	@query
+	mandate?: integer;
 	// TODO: filter by mandate (ref -> candidacyMandate)
+
+	@query
+	fraction?: integer;
 	// TODO: filter by fraction (ref -> fraction)
+
+	@query
+	poll?: integer;
 	// TODO: filter by poll (ref -> poll)
 }
 

@@ -47,8 +47,16 @@ model AllQueryOptions {
 	@query("field_poll_date[lte]")
 	field_poll_dateLessThanOrEqual?: plainDate;
 
+	@query
+	field_committees?: integer;
 	// TODO: filter by field_committees (ref -> committee)
+
+	@query
+	field_legislature?: integer;
 	// TODO: filter by field_legislature (ref -> parliamentPeriod)
+
+	@query
+	field_topics?: integer;
 	// TODO: filter by field_topics (ref -> topic)
 }
 

@@ -1180,6 +1180,9 @@ paths:
         - $ref: '#/components/parameters/Polls.AllQueryOptions.field_poll_dateGreaterThanOrEqual'
         - $ref: '#/components/parameters/Polls.AllQueryOptions.field_poll_dateLessThan'
         - $ref: '#/components/parameters/Polls.AllQueryOptions.field_poll_dateLessThanOrEqual'
+        - $ref: '#/components/parameters/Polls.AllQueryOptions.field_committees'
+        - $ref: '#/components/parameters/Polls.AllQueryOptions.field_legislature'
+        - $ref: '#/components/parameters/Polls.AllQueryOptions.field_topics'
       responses:
         '200':
           description: The request has succeeded.
@@ -1349,6 +1352,9 @@ paths:
         - $ref: '#/components/parameters/Votes.AllQueryOptions.reason_no_show_otherEndsWith'
         - $ref: '#/components/parameters/Votes.AllQueryOptions.reason_no_show_otherIn'
         - $ref: '#/components/parameters/Votes.AllQueryOptions.reason_no_show_otherNotIn'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.mandate'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.fraction'
+        - $ref: '#/components/parameters/Votes.AllQueryOptions.poll'
       responses:
         '200':
           description: The request has succeeded.
@@ -2420,6 +2426,13 @@ components:
           - 1
           - 0
       explode: false
+    Polls.AllQueryOptions.field_committees:
+      name: field_committees
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
     Polls.AllQueryOptions.field_intro:
       name: field_intro
       in: query
@@ -2462,6 +2475,13 @@ components:
       schema:
         type: string
       explode: false
+    Polls.AllQueryOptions.field_legislature:
+      name: field_legislature
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
     Polls.AllQueryOptions.field_poll_date:
       name: field_poll_date
       in: query
@@ -2501,6 +2521,13 @@ components:
       schema:
         type: string
         format: date
+      explode: false
+    Polls.AllQueryOptions.field_topics:
+      name: field_topics
+      in: query
+      required: false
+      schema:
+        type: integer
       explode: false
     Polls.PollsRelatedDataQueryOptions:
       name: related_data
@@ -2600,6 +2627,27 @@ components:
       schema:
         type: string
         format: date
+      explode: false
+    Votes.AllQueryOptions.fraction:
+      name: fraction
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    Votes.AllQueryOptions.mandate:
+      name: mandate
+      in: query
+      required: false
+      schema:
+        type: integer
+      explode: false
+    Votes.AllQueryOptions.poll:
+      name: poll
+      in: query
+      required: false
+      schema:
+        type: integer
       explode: false
     Votes.AllQueryOptions.reason_no_show:
       name: reason_no_show
