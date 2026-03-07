@@ -38,7 +38,7 @@ public static class ServiceCollectionExtensions
 
 	private static void DefaultConfigureHttpClient(HttpClient client)
 	{
-		client.DefaultRequestHeaders.UserAgent.Add(new("AbgeordnetenWatchDotNet", "1.0.0"));
+		client.DefaultRequestHeaders.UserAgent.Add(new("AbgeordnetenWatchDotNet", BuildMetadata.SemVersionString));
 		client.DefaultRequestHeaders.UserAgent.Add(new("(+https://github.com/ricardoboss/AbgeordnetenWatchDotNet)"));
 	}
 }
