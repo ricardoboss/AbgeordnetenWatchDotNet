@@ -11,24 +11,14 @@
 	<PropertyGroup>
 		<MSBuildWarningsAsMessages>CS0618</MSBuildWarningsAsMessages>
 
-		<GeneratedSpecProject>AbgeordnetenWatchDotNet.ApiSpec</GeneratedSpecProject>
-		<GeneratedSpecProjectDir>$(MSBuildThisFileDirectory)../$(GeneratedSpecProject)/</GeneratedSpecProjectDir>
-		<GeneratedSpecProjectFile>$(GeneratedSpecProjectDir)$(GeneratedSpecProject).proj</GeneratedSpecProjectFile>
-		<GeneratedClientSpecFile>$(GeneratedSpecProjectDir)bin/@typespec/openapi3/openapi.yaml</GeneratedClientSpecFile>
+		<GeneratedSpecProjectDir>$(MSBuildThisFileDirectory)../../AbgeordnetenWatchApiSpec/</GeneratedSpecProjectDir>
+		<GeneratedClientSpecFile>$(GeneratedSpecProjectDir)generated/openapi.yaml</GeneratedClientSpecFile>
 		<GeneratedClientDirectory>$(MSBuildThisFileDirectory)Generated/</GeneratedClientDirectory>
 		<GeneratedClientClassName>AbgeordnetenWatchApiClient</GeneratedClientClassName>
 		<GeneratedClientNamespace>$(RootNamespace).Generated</GeneratedClientNamespace>
 		<GeneratedClientLockFile>$(GeneratedClientDirectory)kiota-lock.json</GeneratedClientLockFile>
 		<GeneratedClientLog>$(GeneratedClientDirectory).kiota.log</GeneratedClientLog>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<!-- To ensure the spec file is up-to-date -->
-		<ProjectReference Include="$(GeneratedSpecProjectFile)">
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-			<SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
-		</ProjectReference>
-	</ItemGroup>
 
 	<ItemGroup>
 		<Watch Include="$(GeneratedClientSpecFile)"/>

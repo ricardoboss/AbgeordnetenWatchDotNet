@@ -14,11 +14,6 @@
     <File Path="Package.props" />
     <File Path="README.md" />
   </Folder>
-  <Project Path="AbgeordnetenWatchDotNet.ApiSpec/AbgeordnetenWatchDotNet.ApiSpec.proj" Type="C#">
-    <BuildType Project="?" />
-    <Platform Project="?" />
-    <Build Project="false" />
-  </Project>
   <Project Path="AbgeordnetenWatchDotNet.Example/AbgeordnetenWatchDotNet.Example.csproj" />
   <Project Path="AbgeordnetenWatchDotNet.Extensions.DependencyInjection/AbgeordnetenWatchDotNet.Extensions.DependencyInjection.csproj" />
   <Project Path="AbgeordnetenWatchDotNet/AbgeordnetenWatchDotNet.csproj" />
