@@ -35,9 +35,7 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
 ## Setup
 
-- You need to have [.NET 10 or later](https://dotnet.microsoft.com/en-us/download) installed
-- You need to have [corepack](https://yarnpkg.com/corepack) enabled
-  - This also requires [Node 16.9 or later](https://nodejs.org/en/download)
+You need to have [.NET 10 or later](https://dotnet.microsoft.com/en-us/download) installed
 
 ## Code generation
 
@@ -48,9 +46,18 @@ This project relies heavily on code generation.
 Since the API spec is not available as an OpenAPI specification, we generate our own using
 [typespec](https://typespec.io).
 
-The spec is generated using MSBuild and the typespec compiler in the
-[`AbgeordnetenWatchDotNet.ApiSpec`](./AbgeordnetenWatchDotNet.ApiSpec) project.
-Building it causes the spec to get generated.
+The spec is hosted in a separate repository at [ricardoboss/AbgeordnetenWatchApiSpec](https://github.com/ricardoboss/AbgeordnetenWatchApiSpec).
+The build process expects the api spec repository to exist next to this repository, like this:
+
+```
+/
+    AbgeordnetenWatchApiSpec/
+        generated/
+            openapi.yaml
+    AbgeordnetenWatchDotNet/
+        AbgeordnetenWatchDotNet/
+            AbgeordnetenWatchDotNet.csproj
+```
 
 ### API Client
 
@@ -67,7 +74,6 @@ This means using
 dotnet watch --project ./AbgeordnetenWatchDotNet.Example/AbgeordnetenWatchDotNet.Example.csproj -- build
 ```
 
-you can work on any of the files (including the .tsp-files) and changes cause the spec and the API client to get
-updated.
+you can work on any of the files and changes cause the spec and the API client to get updated.
 
 You can also run `dotnet watch` in any of the project directories.
