@@ -1,6 +1,6 @@
 {
   "descriptionHash": "95CA6084FAB4371B405C5E603532EB99E1AC252BE2E103EBB02A8BA5DA1A66569BBF913BA44EBF57059254A7A426F60C0CC8970315197BABFBCE75356C577FFB",
-  "descriptionLocation": "../../../AbgeordnetenWatchApiSpec/generated/openapi.yaml",
+  "descriptionLocation": "https://raw.githubusercontent.com/ricardoboss/AbgeordnetenWatchApiSpec/refs/heads/main/generated/openapi.yaml",
   "lockFileVersion": "1.0.0",
   "kiotaVersion": "1.30.0",
   "clientClassName": "AbgeordnetenWatchApiClient",

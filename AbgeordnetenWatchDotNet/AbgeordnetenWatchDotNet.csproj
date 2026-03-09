@@ -11,8 +11,7 @@
 	<PropertyGroup>
 		<MSBuildWarningsAsMessages>CS0618</MSBuildWarningsAsMessages>
 
-		<GeneratedSpecProjectDir>$(MSBuildThisFileDirectory)../../AbgeordnetenWatchApiSpec/</GeneratedSpecProjectDir>
-		<GeneratedClientSpecFile>$(GeneratedSpecProjectDir)generated/openapi.yaml</GeneratedClientSpecFile>
+		<SpecFile>https://raw.githubusercontent.com/ricardoboss/AbgeordnetenWatchApiSpec/refs/heads/main/generated/openapi.yaml</SpecFile>
 		<GeneratedClientDirectory>$(MSBuildThisFileDirectory)Generated/</GeneratedClientDirectory>
 		<GeneratedClientClassName>AbgeordnetenWatchApiClient</GeneratedClientClassName>
 		<GeneratedClientNamespace>$(RootNamespace).Generated</GeneratedClientNamespace>
@@ -32,7 +31,7 @@
 
 	<Target Name="GenerateClient" Condition="!Exists('$(GeneratedClientLog)')">
 		<Exec
-			Command="dotnet kiota generate --openapi $(GeneratedClientSpecFile) --language CSharp --output $(GeneratedClientDirectory) --namespace-name $(GeneratedClientNamespace) --class-name $(GeneratedClientClassName) --exclude-backward-compatible --serializer Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory --deserializer Microsoft.Kiota.Serialization.Json.JsonParseNodeFactory --structured-mime-types application/json"
+			Command="dotnet kiota generate --openapi $(SpecFile) --language CSharp --output $(GeneratedClientDirectory) --namespace-name $(GeneratedClientNamespace) --class-name $(GeneratedClientClassName) --exclude-backward-compatible --serializer Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory --deserializer Microsoft.Kiota.Serialization.Json.JsonParseNodeFactory --structured-mime-types application/json"
 			WorkingDirectory="$(MSBuildThisFileDirectory)"
 			EnvironmentVariables="KIOTA_OFFLINE_ENABLED=true;KIOTA_TUTORIAL_ENABLED=false"
 		/>
