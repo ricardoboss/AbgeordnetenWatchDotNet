@@ -18,25 +18,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
-      - name: Enable Corepack
-        run: corepack enable
-      - name: Setup node
-        uses: actions/setup-node@v6
         with:
-          node-version: latest
-          cache: 'yarn'
-          cache-dependency-path: AbgeordnetenWatchDotNet.ApiSpec/yarn.lock
-      - name: Prepare yarn
-        run: corepack prepare $(node -p "require('./AbgeordnetenWatchDotNet.ApiSpec/package.json').packageManager") --activate
-      - name: Cache Yarn
-        uses: actions/cache@v4
+          repository: 'ricardoboss/AbgeordnetenWatchApiSpec'
+          path: AbgeordnetenWatchApiSpec
+      - uses: actions/checkout@v6
         with:
-          path: AbgeordnetenWatchDotNet.ApiSpec/.yarn/cache
-          key: yarn-${{ hashFiles('**/yarn.lock') }}
+          path: AbgeordnetenWatchDotNet
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
+        with:
+          global-json-file: AbgeordnetenWatchDotNet/global.json
+      - name: Restore dependencies
+        run: dotnet restore
+        working-directory: AbgeordnetenWatchDotNet
       - name: Build
-        run: dotnet build -c Release
+        run: dotnet build --no-restore -c Release
+        working-directory: AbgeordnetenWatchDotNet
       - name: Publish AbgeordnetenWatchDotNet Package
         run: dotnet nuget push publish/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
       - name: Publish GitHub Release
