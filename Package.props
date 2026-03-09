@@ -3,8 +3,8 @@
 	<!-- NuGet package properties -->
 	<PropertyGroup>
 		<PackageVersion>2.0.0</PackageVersion>
-		<Description>An API client for the abgeordnetenwatch.de website.</Description>
-		<PackageTags>AbgeordnetenWatch;API;kiota</PackageTags>
+		<Description>An SDK for the abgeordnetenwatch.de API.</Description>
+		<PackageTags>AbgeordnetenWatch;API;SDK;kiota</PackageTags>
 
 		<Authors>Ricardo Boss</Authors>
 		<Copyright>Copyright © 2025-2026 Ricardo Boss</Copyright>
