@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
 	<PropertyGroup>
 		<PackageId>AbgeordnetenWatchDotNet</PackageId>
 		<Description>AbgeordnetenWatch API client library for .NET</Description>
@@ -7,77 +8,50 @@
 
 	<Import Project="../Package.props"/>
 
-	<!-- kiota gen -->
+	<!-- kiota config -->
 	<PropertyGroup>
-		<MSBuildWarningsAsMessages>CS0618</MSBuildWarningsAsMessages>
-
 		<SpecFile>https://raw.githubusercontent.com/ricardoboss/AbgeordnetenWatchApiSpec/refs/heads/main/generated/openapi.yaml</SpecFile>
 		<GeneratedClientDirectory>$(MSBuildThisFileDirectory)Generated/</GeneratedClientDirectory>
 		<GeneratedClientClassName>AbgeordnetenWatchApiClient</GeneratedClientClassName>
 		<GeneratedClientNamespace>$(RootNamespace).Generated</GeneratedClientNamespace>
 		<GeneratedClientLockFile>$(GeneratedClientDirectory)kiota-lock.json</GeneratedClientLockFile>
-		<GeneratedClientLog>$(GeneratedClientDirectory).kiota.log</GeneratedClientLog>
+		<KiotaCommonArgs>--output $(GeneratedClientDirectory)</KiotaCommonArgs>
+		<KiotaEnv>KIOTA_TUTORIAL_ENABLED=false;KIOTA_OFFLINE_ENABLED=true</KiotaEnv>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Watch Include="$(GeneratedClientSpecFile)"/>
-	</ItemGroup>
-
-	<Target Name="EnsureClientUpdated" BeforeTargets="PrepareForBuild">
-		<Exec Command="dotnet tool restore" />
-		<CallTarget Targets="GenerateClient" Condition="!Exists('$(GeneratedClientLog)')"/>
-		<CallTarget Targets="UpdateClient" Condition="Exists('$(GeneratedClientLog)')"/>
+	<Target Name="RestoreKiotaTool">
+		<Exec Command="dotnet tool restore" WorkingDirectory="$(MSBuildThisFileDirectory)"/>
 	</Target>
 
-	<Target Name="GenerateClient" Condition="!Exists('$(GeneratedClientLog)')" Outputs="$(GeneratedClientLockFile)">
+	<Target Name="GenerateClient"
+					DependsOnTargets="RestoreKiotaTool"
+					Condition="!Exists('$(GeneratedClientLockFile)')">
 		<Exec
-			Command="dotnet kiota generate --openapi $(SpecFile) --language CSharp --output $(GeneratedClientDirectory) --namespace-name $(GeneratedClientNamespace) --class-name $(GeneratedClientClassName) --exclude-backward-compatible --serializer Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory --deserializer Microsoft.Kiota.Serialization.Json.JsonParseNodeFactory --structured-mime-types application/json"
+			Command="dotnet kiota generate $(KiotaCommonArgs) --openapi $(SpecFile) --language CSharp --namespace-name $(GeneratedClientNamespace) --class-name $(GeneratedClientClassName) --exclude-backward-compatible --serializer Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory --deserializer Microsoft.Kiota.Serialization.Json.JsonParseNodeFactory --structured-mime-types application/json"
 			WorkingDirectory="$(MSBuildThisFileDirectory)"
-			EnvironmentVariables="KIOTA_OFFLINE_ENABLED=true;KIOTA_TUTORIAL_ENABLED=false"
+			EnvironmentVariables="$(KiotaEnv)"
 		/>
-
-		<PropertyGroup>
-			<NoWarn>$(NoWarn);CS2002</NoWarn>
-		</PropertyGroup>
-
-		<ItemGroup>
-			<Compile Include="$(GeneratedClientDirectory)**/*.cs"/>
-		</ItemGroup>
 	</Target>
 
-	<Target Name="UpdateClient" Condition="Exists('$(GeneratedClientLog)')" Inputs="$(GeneratedClientLockFile)" Outputs="$(GeneratedClientLockFile)">
+	<Target Name="UpdateClient" DependsOnTargets="RestoreKiotaTool">
 		<Exec
-			Command="dotnet kiota update --output $(GeneratedClientDirectory) --clean-output"
+			Command="dotnet kiota update $(KiotaCommonArgs) --clean-output"
 			WorkingDirectory="$(MSBuildThisFileDirectory)"
-			EnvironmentVariables="KIOTA_OFFLINE_ENABLED=true;KIOTA_TUTORIAL_ENABLED=false"
+			EnvironmentVariables="$(KiotaEnv)"
 		/>
-
-		<PropertyGroup>
-			<NoWarn>$(NoWarn);CS2002</NoWarn>
-		</PropertyGroup>
-
-		<ItemGroup>
-			<Compile Include="$(GeneratedClientDirectory)**/*.cs"/>
-		</ItemGroup>
 	</Target>
 
-	<Target Name="CleanClient" AfterTargets="Clean">
+	<Target Name="CleanClient">
 		<RemoveDir Directories="$(GeneratedClientDirectory)"/>
-
-		<ItemGroup>
-			<Compile Remove="$(GeneratedClientDirectory)**/*.cs"/>
-		</ItemGroup>
 	</Target>
+
+	<Target Name="RegenerateClient" DependsOnTargets="CleanClient; GenerateClient" />
 
 	<ItemGroup>
 		<PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
 		<PackageReference Include="Microsoft.Kiota.Abstractions" Version="1.22.0" />
 		<PackageReference Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.22.0" />
 		<PackageReference Include="Microsoft.Kiota.Serialization.Json" Version="1.22.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="$(GeneratedClientDirectory)"/>
 	</ItemGroup>
 
 </Project>
