@@ -29,7 +29,7 @@
 		<CallTarget Targets="UpdateClient" Condition="Exists('$(GeneratedClientLog)')"/>
 	</Target>
 
-	<Target Name="GenerateClient" Condition="!Exists('$(GeneratedClientLog)')">
+	<Target Name="GenerateClient" Condition="!Exists('$(GeneratedClientLog)')" Outputs="$(GeneratedClientLockFile)">
 		<Exec
 			Command="dotnet kiota generate --openapi $(SpecFile) --language CSharp --output $(GeneratedClientDirectory) --namespace-name $(GeneratedClientNamespace) --class-name $(GeneratedClientClassName) --exclude-backward-compatible --serializer Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory --deserializer Microsoft.Kiota.Serialization.Json.JsonParseNodeFactory --structured-mime-types application/json"
 			WorkingDirectory="$(MSBuildThisFileDirectory)"
@@ -41,7 +41,7 @@
 		</ItemGroup>
 	</Target>
 
-	<Target Name="UpdateClient" Condition="Exists('$(GeneratedClientLog)')">
+	<Target Name="UpdateClient" Condition="Exists('$(GeneratedClientLog)')" Inputs="$(GeneratedClientLockFile)" Outputs="$(GeneratedClientLockFile)">
 		<Exec
 			Command="dotnet kiota update --output $(GeneratedClientDirectory) --clean-output"
 			WorkingDirectory="$(MSBuildThisFileDirectory)"
@@ -71,4 +71,5 @@
 	<ItemGroup>
 		<Folder Include="$(GeneratedClientDirectory)"/>
 	</ItemGroup>
+
 </Project>
