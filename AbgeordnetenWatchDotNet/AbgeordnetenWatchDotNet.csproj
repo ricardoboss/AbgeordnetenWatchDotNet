@@ -36,8 +36,12 @@
 			EnvironmentVariables="KIOTA_OFFLINE_ENABLED=true;KIOTA_TUTORIAL_ENABLED=false"
 		/>
 
+		<PropertyGroup>
+			<NoWarn>$(NoWarn);CS2002</NoWarn>
+		</PropertyGroup>
+
 		<ItemGroup>
-			<Compile Include="$(GeneratedClientDirectory)**/*.cs" KeepDuplicates="false"/>
+			<Compile Include="$(GeneratedClientDirectory)**/*.cs"/>
 		</ItemGroup>
 	</Target>
 
@@ -48,8 +52,12 @@
 			EnvironmentVariables="KIOTA_OFFLINE_ENABLED=true;KIOTA_TUTORIAL_ENABLED=false"
 		/>
 
+		<PropertyGroup>
+			<NoWarn>$(NoWarn);CS2002</NoWarn>
+		</PropertyGroup>
+
 		<ItemGroup>
-			<Compile Update="$(GeneratedClientDirectory)**/*.cs" KeepDuplicates="false"/>
+			<Compile Update="$(GeneratedClientDirectory)**/*.cs"/>
 		</ItemGroup>
 	</Target>
 
