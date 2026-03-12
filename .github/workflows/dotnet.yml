@@ -20,7 +20,7 @@ jobs:
       - name: Verify generated client is up to date
         working-directory: AbgeordnetenWatchDotNet
         run: |
-          dotnet build -t:UpdateClient
+          dotnet build --no-restore -t:UpdateClient
           git diff --exit-code Generated/ || (echo "Generated client is out of date. Run 'dotnet build -t:UpdateClient'." && exit 1)
       - name: Build
         run: dotnet build --no-restore -c Release
