@@ -17,5 +17,10 @@ jobs:
         uses: actions/setup-dotnet@v5
       - name: Restore dependencies
         run: dotnet restore
+      - name: Verify generated client is up to date
+        working-directory: AbgeordnetenWatchDotNet
+        run: |
+          dotnet build -t:UpdateClient
+          git diff --exit-code Generated/ || (echo "Generated client is out of date. Run 'dotnet build -t:UpdateClient'." && exit 1)
       - name: Build
         run: dotnet build --no-restore -c Release
