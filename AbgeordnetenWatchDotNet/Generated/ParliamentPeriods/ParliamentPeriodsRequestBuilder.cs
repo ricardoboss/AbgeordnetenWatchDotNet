@@ -218,15 +218,8 @@ namespace AbgeordnetenWatchDotNet.Generated.ParliamentPeriods
             public Date? StartDatePeriodlt { get; set; }
             [QueryParameter("start_date_period%5Blte%5D")]
             public Date? StartDatePeriodlte { get; set; }
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("type")]
-            public string? Type { get; set; }
-#nullable restore
-#else
-            [QueryParameter("type")]
-            public string Type { get; set; }
-#endif
+            public global::AbgeordnetenWatchDotNet.Generated.ParliamentPeriods.GetTypeQueryParameterType? Type { get; set; }
         }
     }
 }
