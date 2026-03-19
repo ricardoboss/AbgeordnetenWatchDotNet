@@ -35,7 +35,7 @@ namespace AbgeordnetenWatchDotNet.Generated.Parliaments
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ParliamentsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/parliaments{?currentProjectLabel,current_project,current_project%5Bentity%2Eelection_date%5D,current_project%5Bentity%2Eelection_date%5D%5Bgt%5D,current_project%5Bentity%2Eelection_date%5D%5Bgte%5D,current_project%5Bentity%2Eelection_date%5D%5Blt%5D,current_project%5Bentity%2Eelection_date%5D%5Blte%5D,current_project%5Bentity%2Eend_date_period%5D,current_project%5Bentity%2Eend_date_period%5D%5Bgt%5D,current_project%5Bentity%2Eend_date_period%5D%5Bgte%5D,current_project%5Bentity%2Eend_date_period%5D%5Blt%5D,current_project%5Bentity%2Eend_date_period%5D%5Blte%5D,current_project%5Bentity%2Elabel%5D%5Bcn%5D,current_project%5Bentity%2Elabel%5D%5Bew%5D,current_project%5Bentity%2Elabel%5D%5Bin%5D,current_project%5Bentity%2Elabel%5D%5Bnotin%5D,current_project%5Bentity%2Elabel%5D%5Bsw%5D,current_project%5Bentity%2Eparliament%5D,current_project%5Bentity%2Eprevious_period%5D,current_project%5Bentity%2Estart_date_period%5D,current_project%5Bentity%2Estart_date_period%5D%5Bgt%5D,current_project%5Bentity%2Estart_date_period%5D%5Bgte%5D,current_project%5Bentity%2Estart_date_period%5D%5Blt%5D,current_project%5Bentity%2Estart_date_period%5D%5Blte%5D,id,id%5Bgt%5D,id%5Bgte%5D,id%5Bin%5D,id%5Blt%5D,id%5Blte%5D,id%5Bne%5D,id%5Bnotin%5D,label,label%5Bcn%5D,label%5Bew%5D,label%5Bin%5D,label%5Bnotin%5D,label%5Bsw%5D,label_external_long,label_external_long%5Bcn%5D,label_external_long%5Bew%5D,label_external_long%5Bin%5D,label_external_long%5Bnotin%5D,label_external_long%5Bsw%5D,page,pager_limit,range_end,range_start}", pathParameters)
+        public ParliamentsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/parliaments{?current_project,current_project%5Bentity%2Eelection_date%5D,current_project%5Bentity%2Eelection_date%5D%5Bgt%5D,current_project%5Bentity%2Eelection_date%5D%5Bgte%5D,current_project%5Bentity%2Eelection_date%5D%5Blt%5D,current_project%5Bentity%2Eelection_date%5D%5Blte%5D,current_project%5Bentity%2Eend_date_period%5D,current_project%5Bentity%2Eend_date_period%5D%5Bgt%5D,current_project%5Bentity%2Eend_date_period%5D%5Bgte%5D,current_project%5Bentity%2Eend_date_period%5D%5Blt%5D,current_project%5Bentity%2Eend_date_period%5D%5Blte%5D,current_project%5Bentity%2Elabel%5D,current_project%5Bentity%2Elabel%5D%5Bcn%5D,current_project%5Bentity%2Elabel%5D%5Bew%5D,current_project%5Bentity%2Elabel%5D%5Bin%5D,current_project%5Bentity%2Elabel%5D%5Bnotin%5D,current_project%5Bentity%2Elabel%5D%5Bsw%5D,current_project%5Bentity%2Eparliament%5D,current_project%5Bentity%2Eprevious_period%5D,current_project%5Bentity%2Estart_date_period%5D,current_project%5Bentity%2Estart_date_period%5D%5Bgt%5D,current_project%5Bentity%2Estart_date_period%5D%5Bgte%5D,current_project%5Bentity%2Estart_date_period%5D%5Blt%5D,current_project%5Bentity%2Estart_date_period%5D%5Blte%5D,current_project%5Bentity%2Etype%5D,id,id%5Bgt%5D,id%5Bgte%5D,id%5Bin%5D,id%5Blt%5D,id%5Blte%5D,id%5Bne%5D,id%5Bnotin%5D,label,label%5Bcn%5D,label%5Bew%5D,label%5Bin%5D,label%5Bnotin%5D,label%5Bsw%5D,label_external_long,label_external_long%5Bcn%5D,label_external_long%5Bew%5D,label_external_long%5Bin%5D,label_external_long%5Bnotin%5D,label_external_long%5Bsw%5D,page,pager_limit,range_end,range_start}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace AbgeordnetenWatchDotNet.Generated.Parliaments
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ParliamentsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/parliaments{?currentProjectLabel,current_project,current_project%5Bentity%2Eelection_date%5D,current_project%5Bentity%2Eelection_date%5D%5Bgt%5D,current_project%5Bentity%2Eelection_date%5D%5Bgte%5D,current_project%5Bentity%2Eelection_date%5D%5Blt%5D,current_project%5Bentity%2Eelection_date%5D%5Blte%5D,current_project%5Bentity%2Eend_date_period%5D,current_project%5Bentity%2Eend_date_period%5D%5Bgt%5D,current_project%5Bentity%2Eend_date_period%5D%5Bgte%5D,current_project%5Bentity%2Eend_date_period%5D%5Blt%5D,current_project%5Bentity%2Eend_date_period%5D%5Blte%5D,current_project%5Bentity%2Elabel%5D%5Bcn%5D,current_project%5Bentity%2Elabel%5D%5Bew%5D,current_project%5Bentity%2Elabel%5D%5Bin%5D,current_project%5Bentity%2Elabel%5D%5Bnotin%5D,current_project%5Bentity%2Elabel%5D%5Bsw%5D,current_project%5Bentity%2Eparliament%5D,current_project%5Bentity%2Eprevious_period%5D,current_project%5Bentity%2Estart_date_period%5D,current_project%5Bentity%2Estart_date_period%5D%5Bgt%5D,current_project%5Bentity%2Estart_date_period%5D%5Bgte%5D,current_project%5Bentity%2Estart_date_period%5D%5Blt%5D,current_project%5Bentity%2Estart_date_period%5D%5Blte%5D,id,id%5Bgt%5D,id%5Bgte%5D,id%5Bin%5D,id%5Blt%5D,id%5Blte%5D,id%5Bne%5D,id%5Bnotin%5D,label,label%5Bcn%5D,label%5Bew%5D,label%5Bin%5D,label%5Bnotin%5D,label%5Bsw%5D,label_external_long,label_external_long%5Bcn%5D,label_external_long%5Bew%5D,label_external_long%5Bin%5D,label_external_long%5Bnotin%5D,label_external_long%5Bsw%5D,page,pager_limit,range_end,range_start}", rawUrl)
+        public ParliamentsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/parliaments{?current_project,current_project%5Bentity%2Eelection_date%5D,current_project%5Bentity%2Eelection_date%5D%5Bgt%5D,current_project%5Bentity%2Eelection_date%5D%5Bgte%5D,current_project%5Bentity%2Eelection_date%5D%5Blt%5D,current_project%5Bentity%2Eelection_date%5D%5Blte%5D,current_project%5Bentity%2Eend_date_period%5D,current_project%5Bentity%2Eend_date_period%5D%5Bgt%5D,current_project%5Bentity%2Eend_date_period%5D%5Bgte%5D,current_project%5Bentity%2Eend_date_period%5D%5Blt%5D,current_project%5Bentity%2Eend_date_period%5D%5Blte%5D,current_project%5Bentity%2Elabel%5D,current_project%5Bentity%2Elabel%5D%5Bcn%5D,current_project%5Bentity%2Elabel%5D%5Bew%5D,current_project%5Bentity%2Elabel%5D%5Bin%5D,current_project%5Bentity%2Elabel%5D%5Bnotin%5D,current_project%5Bentity%2Elabel%5D%5Bsw%5D,current_project%5Bentity%2Eparliament%5D,current_project%5Bentity%2Eprevious_period%5D,current_project%5Bentity%2Estart_date_period%5D,current_project%5Bentity%2Estart_date_period%5D%5Bgt%5D,current_project%5Bentity%2Estart_date_period%5D%5Bgte%5D,current_project%5Bentity%2Estart_date_period%5D%5Blt%5D,current_project%5Bentity%2Estart_date_period%5D%5Blte%5D,current_project%5Bentity%2Etype%5D,id,id%5Bgt%5D,id%5Bgte%5D,id%5Bin%5D,id%5Blt%5D,id%5Blte%5D,id%5Bne%5D,id%5Bnotin%5D,label,label%5Bcn%5D,label%5Bew%5D,label%5Bin%5D,label%5Bnotin%5D,label%5Bsw%5D,label_external_long,label_external_long%5Bcn%5D,label_external_long%5Bew%5D,label_external_long%5Bin%5D,label_external_long%5Bnotin%5D,label_external_long%5Bsw%5D,page,pager_limit,range_end,range_start}", rawUrl)
         {
         }
         /// <returns>A <see cref="global::AbgeordnetenWatchDotNet.Generated.Parliaments.ParliamentsGetResponse"/></returns>
@@ -120,6 +120,15 @@ namespace AbgeordnetenWatchDotNet.Generated.Parliaments
             public Date? CurrentProjectentityEndDatePeriodlte { get; set; }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            [QueryParameter("current_project%5Bentity%2Elabel%5D")]
+            public string? CurrentProjectentityLabel { get; set; }
+#nullable restore
+#else
+            [QueryParameter("current_project%5Bentity%2Elabel%5D")]
+            public string CurrentProjectentityLabel { get; set; }
+#endif
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
             [QueryParameter("current_project%5Bentity%2Elabel%5D%5Bcn%5D")]
             public string? CurrentProjectentityLabelcn { get; set; }
 #nullable restore
@@ -177,15 +186,8 @@ namespace AbgeordnetenWatchDotNet.Generated.Parliaments
             public Date? CurrentProjectentityStartDatePeriodlt { get; set; }
             [QueryParameter("current_project%5Bentity%2Estart_date_period%5D%5Blte%5D")]
             public Date? CurrentProjectentityStartDatePeriodlte { get; set; }
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            [QueryParameter("currentProjectLabel")]
-            public string? CurrentProjectLabel { get; set; }
-#nullable restore
-#else
-            [QueryParameter("currentProjectLabel")]
-            public string CurrentProjectLabel { get; set; }
-#endif
+            [QueryParameter("current_project%5Bentity%2Etype%5D")]
+            public global::AbgeordnetenWatchDotNet.Generated.Parliaments.GetCurrent_projectEntityTypeQueryParameterType? CurrentProjectentityType { get; set; }
             [QueryParameter("id")]
             public int? Id { get; set; }
             [QueryParameter("id%5Bgt%5D")]
